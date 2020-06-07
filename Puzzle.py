@@ -6,6 +6,8 @@ class Puzzle:
     BOXES = ["b2", "e2", "h2", "b5", "e5", "h5", "b8", "e8", "h8"]
 
     def __init__(self, start):
+        """ Creates a Puzzle from a .sudoku file. """
+        
         self.a1 = start[16]
         self.b1 = start[17]
         self.c1 = start[18]
