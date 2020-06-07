@@ -9,8 +9,7 @@ start_condition = Puzzle.generate(data)
 working_conditions = [start_condition]
 index = 0
 
-for c in start_condition.__dict__:
-    value = start_condition.__dict__[c]
+for c, value in start_condition.__dict__.items():
     new_working_conditions = []
 
     if value == "_":
