@@ -93,16 +93,6 @@ class Puzzle:
             self.h1, self.h2, self.h3, self.h4, self.h5, self.h6, self.h7, self.h8, self.h9,
             self.i1, self.i2, self.i3, self.i4, self.i5, self.i6, self.i7, self.i8, self.i9]
 
-        self.row1 = [self.a1, self.b1, self.c1, self.d1, self.e1, self.f1, self.g1, self.h1, self.i1]
-        self.row2 = [self.a2, self.b2, self.c2, self.d2, self.e2, self.f2, self.g2, self.h2, self.i2]
-        self.row3 = [self.a3, self.b3, self.c3, self.d3, self.e3, self.f3, self.g3, self.h3, self.i3]
-        self.row4 = [self.a4, self.b4, self.c4, self.d4, self.e4, self.f4, self.g4, self.h4, self.i4]
-        self.row5 = [self.a5, self.b5, self.c5, self.d5, self.e5, self.f5, self.g5, self.h5, self.i5]
-        self.row6 = [self.a6, self.b6, self.c6, self.d6, self.e6, self.f6, self.g6, self.h6, self.i6]
-        self.row7 = [self.a7, self.b7, self.c7, self.d7, self.e7, self.f7, self.g7, self.h7, self.i7]
-        self.row8 = [self.a8, self.b8, self.c8, self.d8, self.e8, self.f8, self.g8, self.h8, self.i8]
-        self.row9 = [self.a9, self.b9, self.c9, self.d9, self.e9, self.f9, self.g9, self.h9, self.i9]
-
         self.col_a = [self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9]
         self.col_b = [self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7, self.b8, self.b9]
         self.col_c = [self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9]
@@ -123,20 +113,29 @@ class Puzzle:
         self.box_e8 = [self.d7, self.e7, self.f7, self.d8, self.e8, self.f8, self.d9, self.e9, self.f9]
         self.box_h8 = [self.g7, self.h7, self.i7, self.g8, self.h8, self.i8, self.g9, self.h9, self.i9]
 
-        self.rows = [self.row1, self.row2, self.row3, self.row4,
-            self.row5, self.row6, self.row7, self.row8, self.row9]
-        self.cols = [self.col_a, self.col_b, self.col_c, self.col_d,
-            self.col_e, self.col_f, self.col_g, self.col_h, self.col_i]
-        self.boxes = [self.box_b2, self.box_e2, self.box_h2, self.box_b5,
-            self.box_e5, self.box_h5, self.box_b8, self.box_e8, self.box_h8]
-
     @classmethod
-    def generate(start):
+    def generate(cls, start):
         """ Turns a .sudoku file into a Puzzle object. """
         if len(start) != 167:
             raise Exception ("The .sudoku file is not formatted properly.")
 
-        return Puzzle(start)
+        return cls(start)
+
+    def get_row(self, n):
+        rows = {
+            1: [self.a1, self.b1, self.c1, self.d1, self.e1, self.f1, self.g1, self.h1, self.i1],
+            2: [self.a2, self.b2, self.c2, self.d2, self.e2, self.f2, self.g2, self.h2, self.i2],
+            3: [self.a3, self.b3, self.c3, self.d3, self.e3, self.f3, self.g3, self.h3, self.i3],
+            4: [self.a4, self.b4, self.c4, self.d4, self.e4, self.f4, self.g4, self.h4, self.i4],
+            5: [self.a5, self.b5, self.c5, self.d5, self.e5, self.f5, self.g5, self.h5, self.i5],
+            6: [self.a6, self.b6, self.c6, self.d6, self.e6, self.f6, self.g6, self.h6, self.i6],
+            7: [self.a7, self.b7, self.c7, self.d7, self.e7, self.f7, self.g7, self.h7, self.i7],
+            8: [self.a8, self.b8, self.c8, self.d8, self.e8, self.f8, self.g8, self.h8, self.i8],
+            9: [self.a9, self.b9, self.c9, self.d9, self.e9, self.f9, self.g9, self.h9, self.i9]
+        }
+        return rows[n]
+        
+
 
 def check_group(group):
     """ Return False if there are any doubles in a list. """
