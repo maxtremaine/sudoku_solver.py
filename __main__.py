@@ -20,7 +20,7 @@ for c, value in start_condition.__dict__.items():
                 if new_condition.check_puzzle():
                     new_working_conditions.append(new_condition)
 
-        print(new_working_conditions)
+        print(len(new_working_conditions))
         working_conditions = new_working_conditions
 
 print(working_conditions[0].__dict__)
