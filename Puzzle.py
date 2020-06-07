@@ -190,7 +190,7 @@ class Puzzle:
         return cell_list
 
     def to_list(self):
-        return [x[1] for x in self.__dict__.items()]
+        return [ x[1] for x in self.__dict__.items() ]
 
     def check_puzzle(self):
         for row in self.ROWS:
@@ -207,11 +207,23 @@ class Puzzle:
 
         return True
 
+    def check_relative_cells(self, cell):
+        if check_group(self.get_group("row", cell.row)) == False:
+            return False
+
+        if check_group(self.get_group("col", cell.col)) == False:
+            return False
+
+        if check_group(self.get_group("box", cell.box)) == False:
+            return False
+
+        return True
+
 
 def check_group(group):
     """ Return False if there are any doubles in a list. """
 
-    group = [x.value for x in group]
+    group = [ x.value for x in group ]
 
     if len(group) != 9:
         raise Exception("The group size renders it invalid.")

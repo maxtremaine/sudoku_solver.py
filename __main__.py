@@ -6,6 +6,9 @@ with open("input/start.sudoku") as f:
 start_condition = Puzzle.create_from_file(data)
 working_conditions = [ start_condition ]
 
+if not start_condition.check_puzzle():
+    raise Exception("The start condition is not valid.")
+
 run_dict = start_condition.to_list()
 run_dict = [ x for x in run_dict if x.value == "_" ]
 run_dict.sort(key = lambda x: x.freedom)
@@ -17,7 +20,7 @@ for cell in run_dict:
         for n in range(1, 10):
             new_condition = Puzzle.shallow_copy(working_condition)
             new_condition.__dict__[cell.code].value = n
-            if new_condition.check_puzzle():
+            if new_condition.check_relative_cells(cell):
                 new_working_conditions.append(new_condition)
 
     working_conditions = new_working_conditions
