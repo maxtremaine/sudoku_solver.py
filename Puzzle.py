@@ -1,3 +1,5 @@
+from Cell import Cell
+
 class Puzzle:
     """ Sudoku puzzle. """
 
@@ -17,7 +19,7 @@ class Puzzle:
         a9, b9, c9, d9, e9, f9, g9, h9, i9):
         """ Creates a Puzzle from a .sudoku file. """
 
-        self.a1 = a1
+        self.a1 = Cell("a1", 1, "a", "b2", a1)
         self.b1 = b1
         self.c1 = c1
         self.d1 = d1
