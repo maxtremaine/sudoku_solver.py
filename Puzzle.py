@@ -88,18 +88,6 @@ class Puzzle:
         self.h9 = start[165]
         self.i9 = start[166]
 
-        self.full = [
-            self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9,
-            self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7, self.b8, self.b9,
-            self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9,
-            self.d1, self.d2, self.d3, self.d4, self.d5, self.d6, self.d7, self.d8, self.d9,
-            self.e1, self.e2, self.e3, self.e4, self.e5, self.e6, self.e7, self.e8, self.e9,
-            self.f1, self.f2, self.f3, self.f4, self.f5, self.f6, self.f7, self.f8, self.f9,
-            self.g1, self.g2, self.g3, self.g4, self.g5, self.g6, self.g7, self.g8, self.g9,
-            self.h1, self.h2, self.h3, self.h4, self.h5, self.h6, self.h7, self.h8, self.h9,
-            self.i1, self.i2, self.i3, self.i4, self.i5, self.i6, self.i7, self.i8, self.i9
-        ]
-
     @classmethod
     def generate(cls, start):
         """ Turns a .sudoku file into a Puzzle object. """
