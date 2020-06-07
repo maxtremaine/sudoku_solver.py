@@ -1,5 +1,10 @@
 class Puzzle:
     """ Sudoku puzzle. """
+
+    ROWS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    COLS = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
+    BOXES = ["b2", "e2", "h2", "b5", "e5", "h5", "b8", "e8", "h8"]
+
     def __init__(self, start):
         self.a1 = start[16]
         self.b1 = start[17]
@@ -83,7 +88,8 @@ class Puzzle:
         self.h9 = start[165]
         self.i9 = start[166]
 
-        self.full = [self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9,
+        self.full = [
+            self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9,
             self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7, self.b8, self.b9,
             self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9,
             self.d1, self.d2, self.d3, self.d4, self.d5, self.d6, self.d7, self.d8, self.d9,
@@ -91,27 +97,8 @@ class Puzzle:
             self.f1, self.f2, self.f3, self.f4, self.f5, self.f6, self.f7, self.f8, self.f9,
             self.g1, self.g2, self.g3, self.g4, self.g5, self.g6, self.g7, self.g8, self.g9,
             self.h1, self.h2, self.h3, self.h4, self.h5, self.h6, self.h7, self.h8, self.h9,
-            self.i1, self.i2, self.i3, self.i4, self.i5, self.i6, self.i7, self.i8, self.i9]
-
-        self.col_a = [self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9]
-        self.col_b = [self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7, self.b8, self.b9]
-        self.col_c = [self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9]
-        self.col_d = [self.d1, self.d2, self.d3, self.d4, self.d5, self.d6, self.d7, self.d8, self.d9]
-        self.col_e = [self.e1, self.e2, self.e3, self.e4, self.e5, self.e6, self.e7, self.e8, self.e9]
-        self.col_f = [self.f1, self.f2, self.f3, self.f4, self.f5, self.f6, self.f7, self.f8, self.f9]
-        self.col_g = [self.g1, self.g2, self.g3, self.g4, self.g5, self.g6, self.g7, self.g8, self.g9]
-        self.col_h = [self.h1, self.h2, self.h3, self.h4, self.h5, self.h6, self.h7, self.h8, self.h9]
-        self.col_i = [self.i1, self.i2, self.i3, self.i4, self.i5, self.i6, self.i7, self.i8, self.i9]
-
-        self.box_b2 = [self.a1, self.b1, self.c1, self.a2, self.b2, self.c2, self.a3, self.b3, self.c3]
-        self.box_e2 = [self.d1, self.e1, self.f1, self.d2, self.e2, self.f2, self.d3, self.e3, self.f3]
-        self.box_h2 = [self.g1, self.h1, self.i1, self.g2, self.h2, self.i2, self.g3, self.h3, self.i3]
-        self.box_b5 = [self.a4, self.b4, self.c4, self.a5, self.b5, self.c5, self.a6, self.b6, self.c6]
-        self.box_e5 = [self.d4, self.e4, self.f4, self.d5, self.e5, self.f5, self.d6, self.e6, self.f6]
-        self.box_h5 = [self.g4, self.h4, self.i4, self.g5, self.h5, self.i5, self.g6, self.h6, self.i6]
-        self.box_b8 = [self.a7, self.b7, self.c7, self.a8, self.b8, self.c8, self.a9, self.b9, self.c9]
-        self.box_e8 = [self.d7, self.e7, self.f7, self.d8, self.e8, self.f8, self.d9, self.e9, self.f9]
-        self.box_h8 = [self.g7, self.h7, self.i7, self.g8, self.h8, self.i8, self.g9, self.h9, self.i9]
+            self.i1, self.i2, self.i3, self.i4, self.i5, self.i6, self.i7, self.i8, self.i9
+        ]
 
     @classmethod
     def generate(cls, start):
@@ -134,7 +121,49 @@ class Puzzle:
             9: [self.a9, self.b9, self.c9, self.d9, self.e9, self.f9, self.g9, self.h9, self.i9]
         }
         return rows[n]
+
+    def get_col(self, a):
+        cols = {
+            "a": [self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9],
+            "b": [self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7, self.b8, self.b9],
+            "c": [self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9],
+            "d": [self.d1, self.d2, self.d3, self.d4, self.d5, self.d6, self.d7, self.d8, self.d9],
+            "e": [self.e1, self.e2, self.e3, self.e4, self.e5, self.e6, self.e7, self.e8, self.e9],
+            "f": [self.f1, self.f2, self.f3, self.f4, self.f5, self.f6, self.f7, self.f8, self.f9],
+            "g": [self.g1, self.g2, self.g3, self.g4, self.g5, self.g6, self.g7, self.g8, self.g9],
+            "h": [self.h1, self.h2, self.h3, self.h4, self.h5, self.h6, self.h7, self.h8, self.h9],
+            "i": [self.i1, self.i2, self.i3, self.i4, self.i5, self.i6, self.i7, self.i8, self.i9]
+        }
+        return cols[a]
         
+    def get_box(self, c):
+        boxes = {
+            "b2": [self.a1, self.b1, self.c1, self.a2, self.b2, self.c2, self.a3, self.b3, self.c3],
+            "e2": [self.d1, self.e1, self.f1, self.d2, self.e2, self.f2, self.d3, self.e3, self.f3],
+            "h2": [self.g1, self.h1, self.i1, self.g2, self.h2, self.i2, self.g3, self.h3, self.i3],
+            "b5": [self.a4, self.b4, self.c4, self.a5, self.b5, self.c5, self.a6, self.b6, self.c6],
+            "e5": [self.d4, self.e4, self.f4, self.d5, self.e5, self.f5, self.d6, self.e6, self.f6],
+            "h5": [self.g4, self.h4, self.i4, self.g5, self.h5, self.i5, self.g6, self.h6, self.i6],
+            "b8": [self.a7, self.b7, self.c7, self.a8, self.b8, self.c8, self.a9, self.b9, self.c9],
+            "e8": [self.d7, self.e7, self.f7, self.d8, self.e8, self.f8, self.d9, self.e9, self.f9],
+            "h8": [self.g7, self.h7, self.i7, self.g8, self.h8, self.i8, self.g9, self.h9, self.i9]
+        }
+        return boxes[c]
+
+    def check_puzzle(self):
+        for row in self.ROWS:
+            if check_group(self.get_row(row)) == False:
+                return False
+        
+        for col in self.COLS:
+            if check_group(self.get_col(col)) == False:
+                return False
+
+        for box in self.BOXES:
+            if check_group(self.get_box(box)) == False:
+                return False
+
+        return True
 
 
 def check_group(group):
@@ -146,6 +175,8 @@ def check_group(group):
     check_scope = set()
 
     for num in group:
+        num = str(num)
+
         if num != "_":
             if num in check_scope:
                 return False
