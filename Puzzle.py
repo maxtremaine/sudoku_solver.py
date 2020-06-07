@@ -101,6 +101,21 @@ class Puzzle:
         self.h9 = Cell("h9", "h", 9, "h8", h9)
         self.i9 = Cell("i9", "i", 9, "h8", i9)
 
+        # Add freedom values to the cells.
+        for cell in self.__dict__.values():
+            freedom = 0
+
+            col_list = self.get_col(cell.col)
+            row_list = self.get_row(cell.row)
+            box_list = self.get_box(cell.box)
+            related_cells = col_list + row_list + box_list
+
+            for related_cell in related_cells:
+                if related_cell.value == "_":
+                    freedom += 1
+
+            cell.freedom = freedom
+
     @classmethod
     def create_from_file(cls, start):
         """ Turns a .sudoku file into a Puzzle object. """
@@ -135,6 +150,36 @@ class Puzzle:
             d9 = start[160], e9 = start[161], f9 = start[162],
             g9 = start[164], h9 = start[165], i9 = start[166])
 
+    @classmethod
+    def shallow_copy(cls, to_copy):
+        return cls(a1 = to_copy.a1.value, b1 = to_copy.b1.value, c1 = to_copy.c1.value,
+            d1 = to_copy.d1.value, e1 = to_copy.e1.value, f1 = to_copy.f1.value,
+            g1 = to_copy.g1.value, h1 = to_copy.h1.value, i1 = to_copy.i1.value,
+            a2 = to_copy.a2.value, b2 = to_copy.b2.value, c2 = to_copy.c2.value,
+            d2 = to_copy.d2.value, e2 = to_copy.e2.value, f2 = to_copy.f2.value,
+            g2 = to_copy.g2.value, h2 = to_copy.h2.value, i2 = to_copy.i2.value,
+            a3 = to_copy.a3.value, b3 = to_copy.b3.value, c3 = to_copy.c3.value,
+            d3 = to_copy.d3.value, e3 = to_copy.e3.value, f3 = to_copy.f3.value,
+            g3 = to_copy.g3.value, h3 = to_copy.h3.value, i3 = to_copy.i3.value,
+            a4 = to_copy.a4.value, b4 = to_copy.b4.value, c4 = to_copy.c4.value,
+            d4 = to_copy.d4.value, e4 = to_copy.e4.value, f4 = to_copy.f4.value,
+            g4 = to_copy.g4.value, h4 = to_copy.h4.value, i4 = to_copy.i4.value,
+            a5 = to_copy.a5.value, b5 = to_copy.b5.value, c5 = to_copy.c5.value,
+            d5 = to_copy.d5.value, e5 = to_copy.e5.value, f5 = to_copy.f5.value,
+            g5 = to_copy.g5.value, h5 = to_copy.h5.value, i5 = to_copy.i5.value,
+            a6 = to_copy.a6.value, b6 = to_copy.b6.value, c6 = to_copy.c6.value,
+            d6 = to_copy.d6.value, e6 = to_copy.e6.value, f6 = to_copy.f6.value,
+            g6 = to_copy.g6.value, h6 = to_copy.h6.value, i6 = to_copy.i6.value,
+            a7 = to_copy.a7.value, b7 = to_copy.b7.value, c7 = to_copy.c7.value,
+            d7 = to_copy.d7.value, e7 = to_copy.e7.value, f7 = to_copy.f7.value,
+            g7 = to_copy.g7.value, h7 = to_copy.h7.value, i7 = to_copy.i7.value,
+            a8 = to_copy.a8.value, b8 = to_copy.b8.value, c8 = to_copy.c8.value,
+            d8 = to_copy.d8.value, e8 = to_copy.e8.value, f8 = to_copy.f8.value,
+            g8 = to_copy.g8.value, h8 = to_copy.h8.value, i8 = to_copy.i8.value,
+            a9 = to_copy.a9.value, b9 = to_copy.b9.value, c9 = to_copy.c9.value,
+            d9 = to_copy.d9.value, e9 = to_copy.e9.value, f9 = to_copy.f9.value,
+            g9 = to_copy.g9.value, h9 = to_copy.h9.value, i9 = to_copy.i9.value)
+    
     def get_row(self, n):
         cell_list = []
         
@@ -162,6 +207,9 @@ class Puzzle:
 
         return box_list
 
+    def to_list(self):
+        return [x[1] for x in self.__dict__.items()]
+
     def check_puzzle(self):
         for row in self.ROWS:
             if check_group(self.get_row(row)) == False:
@@ -188,13 +236,13 @@ def check_group(group):
 
     check_scope = set()
 
-    for num in group:
-        num = str(num)
+    for val in group:
+        val = str(val)
 
-        if num != "_":
-            if num in check_scope:
+        if val != "_":
+            if val in check_scope:
                 return False
             else:
-                check_scope.add(num)
+                check_scope.add(val)
     
     return True
