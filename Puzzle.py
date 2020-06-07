@@ -105,9 +105,9 @@ class Puzzle:
         for cell in self.__dict__.values():
             freedom = 0
 
-            col_list = self.get_col(cell.col)
-            row_list = self.get_row(cell.row)
-            box_list = self.get_box(cell.box)
+            col_list = self.get_group("col", cell.col)
+            row_list = self.get_group("row", cell.row)
+            box_list = self.get_group("box", cell.box)
             related_cells = col_list + row_list + box_list
 
             for related_cell in related_cells:
@@ -180,47 +180,29 @@ class Puzzle:
             d9 = to_copy.d9.value, e9 = to_copy.e9.value, f9 = to_copy.f9.value,
             g9 = to_copy.g9.value, h9 = to_copy.h9.value, i9 = to_copy.i9.value)
     
-    def get_row(self, n):
+    def get_group(self, group_type, code):
         cell_list = []
-        
-        for key in self.__dict__:
-            if self.__dict__[key].row == n:
-                cell_list.append(self.__dict__[key])
+
+        for cell in self.__dict__.values():
+            if cell.__dict__[group_type] == code:
+                cell_list.append(cell)
 
         return cell_list
-
-    def get_col(self, a):
-        col_list = []
-
-        for key in self.__dict__:
-            if self.__dict__[key].col == a:
-                col_list.append(self.__dict__[key])
-
-        return col_list
-        
-    def get_box(self, c):
-        box_list = []
-
-        for key in self.__dict__:
-            if self.__dict__[key].box == c:
-                box_list.append(self.__dict__[key])
-
-        return box_list
 
     def to_list(self):
         return [x[1] for x in self.__dict__.items()]
 
     def check_puzzle(self):
         for row in self.ROWS:
-            if check_group(self.get_row(row)) == False:
+            if check_group(self.get_group("row", row)) == False:
                 return False
         
         for col in self.COLS:
-            if check_group(self.get_col(col)) == False:
+            if check_group(self.get_group("col", col)) == False:
                 return False
 
         for box in self.BOXES:
-            if check_group(self.get_box(box)) == False:
+            if check_group(self.get_group("box", box)) == False:
                 return False
 
         return True

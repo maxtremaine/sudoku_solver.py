@@ -4,10 +4,11 @@ with open("input/start.sudoku") as f:
     data = f.read()
 
 start_condition = Puzzle.create_from_file(data)
-run_dict = start_condition.to_list()
-run_dict = [x for x in run_dict if x.value == "_"]
-run_dict.sort(key = lambda x: x.freedom)
 working_conditions = [ start_condition ]
+
+run_dict = start_condition.to_list()
+run_dict = [ x for x in run_dict if x.value == "_" ]
+run_dict.sort(key = lambda x: x.freedom)
 
 for cell in run_dict:
     new_working_conditions = []
@@ -22,6 +23,3 @@ for cell in run_dict:
     working_conditions = new_working_conditions
     
     print(len(working_conditions))
-
-for cell in working_conditions[0].__dict__.values():
-    print(cell.value)
