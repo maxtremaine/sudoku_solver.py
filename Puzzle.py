@@ -7,7 +7,7 @@ class Puzzle:
 
     def __init__(self, start):
         """ Creates a Puzzle from a .sudoku file. """
-        
+
         self.a1 = start[16]
         self.b1 = start[17]
         self.c1 = start[18]
@@ -91,7 +91,7 @@ class Puzzle:
         self.i9 = start[166]
 
     @classmethod
-    def generate(cls, start):
+    def create_from_file(cls, start):
         """ Turns a .sudoku file into a Puzzle object. """
         if len(start) != 167:
             raise Exception ("The .sudoku file is not formatted properly.")
