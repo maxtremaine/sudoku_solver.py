@@ -10,16 +10,6 @@ index = 0
 sort_map = {}
 run_dict = [x for x in start_condition.__dict__.items()]
 
-for key in Puzzle.COLS:
-    blank_count = 0
-    col = start_condition.get_col(key)
-    for cell in col:
-        if cell == "_":
-            blank_count += 1
-    sort_map[key] = blank_count
-
-run_dict.sort(key = lambda x: sort_map[x[0][0]])
-
 for c, value in run_dict:
     new_working_conditions = []
 

@@ -1,10 +1,10 @@
 class Cell:
     """ Cell in a Sudoku puzzle. """
 
-    def __init__(self, code, row, col, box, value, freedom):
+    def __init__(self, code: str, col: str, row: int, box: str, value: str, freedom = 0):
         self.code = code
-        self.row = row
         self.col = col
+        self.row = row
         self.box = box
         self.value = value
         self.freedom = freedom

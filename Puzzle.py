@@ -19,87 +19,87 @@ class Puzzle:
         a9, b9, c9, d9, e9, f9, g9, h9, i9):
         """ Creates a Puzzle from a .sudoku file. """
 
-        self.a1 = Cell("a1", 1, "a", "b2", a1)
-        self.b1 = b1
-        self.c1 = c1
-        self.d1 = d1
-        self.e1 = e1
-        self.f1 = f1
-        self.g1 = g1
-        self.h1 = h1
-        self.i1 = i1
-        self.a2 = a2
-        self.b2 = b2
-        self.c2 = c2
-        self.d2 = d2
-        self.e2 = e2
-        self.f2 = f2
-        self.g2 = g2
-        self.h2 = h2
-        self.i2 = i2
-        self.a3 = a3
-        self.b3 = b3
-        self.c3 = c3
-        self.d3 = d3
-        self.e3 = e3
-        self.f3 = f3
-        self.g3 = g3
-        self.h3 = h3
-        self.i3 = i3
-        self.a4 = a4
-        self.b4 = b4
-        self.c4 = c4
-        self.d4 = d4
-        self.e4 = e4
-        self.f4 = f4
-        self.g4 = g4
-        self.h4 = h4
-        self.i4 = i4
-        self.a5 = a5
-        self.b5 = b5
-        self.c5 = c5
-        self.d5 = d5
-        self.e5 = e5
-        self.f5 = f5
-        self.g5 = g5
-        self.h5 = h5
-        self.i5 = i5
-        self.a6 = a6
-        self.b6 = b6
-        self.c6 = c6
-        self.d6 = d6
-        self.e6 = e6
-        self.f6 = f6
-        self.g6 = g6
-        self.h6 = h6
-        self.i6 = i6
-        self.a7 = a7
-        self.b7 = b7
-        self.c7 = c7
-        self.d7 = d7
-        self.e7 = e7
-        self.f7 = f7
-        self.g7 = g7
-        self.h7 = h7
-        self.i7 = i7
-        self.a8 = a8
-        self.b8 = b8
-        self.c8 = c8
-        self.d8 = d8
-        self.e8 = e8
-        self.f8 = f8
-        self.g8 = g8
-        self.h8 = h8
-        self.i8 = i8
-        self.a9 = a9
-        self.b9 = b9
-        self.c9 = c9
-        self.d9 = d9
-        self.e9 = e9
-        self.f9 = f9
-        self.g9 = g9
-        self.h9 = h9
-        self.i9 = i9
+        self.a1 = Cell("a1", "a", 1, "b2", a1)
+        self.b1 = Cell("b1", "b", 1, "b2", b1)
+        self.c1 = Cell("c1", "c", 1, "b2", c1)
+        self.d1 = Cell("d1", "d", 1, "e2", d1)
+        self.e1 = Cell("e1", "e", 1, "e2", e1)
+        self.f1 = Cell("f1", "f", 1, "e2", f1)
+        self.g1 = Cell("g1", "g", 1, "h2", g1)
+        self.h1 = Cell("h1", "h", 1, "h2", h1)
+        self.i1 = Cell("i1", "i", 1, "h2", i1)
+        self.a2 = Cell("a2", "a", 2, "b2", a2)
+        self.b2 = Cell("b2", "b", 2, "b2", b2)
+        self.c2 = Cell("c2", "c", 2, "b2", c2)
+        self.d2 = Cell("d2", "d", 2, "e2", d2)
+        self.e2 = Cell("e2", "e", 2, "e2", e2)
+        self.f2 = Cell("f2", "f", 2, "e2", f2)
+        self.g2 = Cell("g2", "g", 2, "h2", g2)
+        self.h2 = Cell("h2", "h", 2, "h2", h2)
+        self.i2 = Cell("i2", "i", 2, "h2", i2)
+        self.a3 = Cell("a3", "a", 3, "b2", a3)
+        self.b3 = Cell("b3", "b", 3, "b2", b3)
+        self.c3 = Cell("c3", "c", 3, "b2", c3)
+        self.d3 = Cell("d3", "d", 3, "e2", d3)
+        self.e3 = Cell("e3", "e", 3, "e2", e3)
+        self.f3 = Cell("f3", "f", 3, "e2", f3)
+        self.g3 = Cell("g3", "g", 3, "h2", g3)
+        self.h3 = Cell("h3", "h", 3, "h2", h3)
+        self.i3 = Cell("i3", "i", 3, "h2", i3)
+        self.a4 = Cell("a4", "a", 4, "b5", a4)
+        self.b4 = Cell("b4", "b", 4, "b5", b4)
+        self.c4 = Cell("c4", "c", 4, "b5", c4)
+        self.d4 = Cell("d4", "d", 4, "e5", d4)
+        self.e4 = Cell("e4", "e", 4, "e5", e4)
+        self.f4 = Cell("f4", "f", 4, "e5", f4)
+        self.g4 = Cell("g4", "g", 4, "h5", g4)
+        self.h4 = Cell("h4", "h", 4, "h5", h4)
+        self.i4 = Cell("i4", "i", 4, "h5", i4)
+        self.a5 = Cell("a5", "a", 5, "b5", a5) 
+        self.b5 = Cell("b5", "b", 5, "b5", b5)
+        self.c5 = Cell("c5", "c", 5, "b5", c5)
+        self.d5 = Cell("d5", "d", 5, "e5", d5)
+        self.e5 = Cell("e5", "e", 5, "e5", e5)
+        self.f5 = Cell("f5", "f", 5, "e5", f5)
+        self.g5 = Cell("g5", "g", 5, "h5", g5)
+        self.h5 = Cell("h5", "h", 5, "h5", h5)
+        self.i5 = Cell("i5", "i", 5, "h5", i5)
+        self.a6 = Cell("a6", "a", 6, "b5", a6)
+        self.b6 = Cell("b6", "b", 6, "b5", b6)
+        self.c6 = Cell("c6", "c", 6, "b5", c6)
+        self.d6 = Cell("d6", "d", 6, "e5", d6)
+        self.e6 = Cell("e6", "e", 6, "e5", e6)
+        self.f6 = Cell("f6", "f", 6, "e5", f6)
+        self.g6 = Cell("g6", "g", 6, "h5", g6)
+        self.h6 = Cell("h6", "h", 6, "h5", h6)
+        self.i6 = Cell("i6", "i", 6, "h5", i6)
+        self.a7 = Cell("a7", "a", 7, "b8", a7)
+        self.b7 = Cell("b7", "b", 7, "b8", b7)
+        self.c7 = Cell("c7", "c", 7, "b8", c7)
+        self.d7 = Cell("d7", "d", 7, "e8", d7)
+        self.e7 = Cell("e7", "e", 7, "e8", e7)
+        self.f7 = Cell("f7", "f", 7, "e8", f7)
+        self.g7 = Cell("g7", "g", 7, "h8", g7)
+        self.h7 = Cell("h7", "h", 7, "h8", h7)
+        self.i7 = Cell("i7", "i", 7, "h8", i7)
+        self.a8 = Cell("a8", "a", 8, "b8", a8)
+        self.b8 = Cell("b8", "b", 8, "b8", b8)
+        self.c8 = Cell("c8", "c", 8, "b8", c8)
+        self.d8 = Cell("d8", "d", 8, "e8", d8)
+        self.e8 = Cell("e8", "e", 8, "e8", e8)
+        self.f8 = Cell("f8", "f", 8, "e8", f8)
+        self.g8 = Cell("g8", "g", 8, "h8", g8)
+        self.h8 = Cell("h8", "h", 8, "h8", h8)
+        self.i8 = Cell("i8", "i", 8, "h8", i8)
+        self.a9 = Cell("a9", "a", 9, "b8", a9)
+        self.b9 = Cell("b9", "b", 9, "b8", b9)
+        self.c9 = Cell("c9", "c", 9, "b8", c9)
+        self.d9 = Cell("d9", "d", 9, "e8", d9)
+        self.e9 = Cell("e9", "e", 9, "e8", e9)
+        self.f9 = Cell("f9", "f", 9, "e8", f9)
+        self.g9 = Cell("g9", "g", 9, "h8", g9)
+        self.h9 = Cell("h9", "h", 9, "h8", h9)
+        self.i9 = Cell("i9", "i", 9, "h8", i9)
 
     @classmethod
     def create_from_file(cls, start):
@@ -136,46 +136,31 @@ class Puzzle:
             g9 = start[164], h9 = start[165], i9 = start[166])
 
     def get_row(self, n):
-        rows = {
-            1: [self.a1, self.b1, self.c1, self.d1, self.e1, self.f1, self.g1, self.h1, self.i1],
-            2: [self.a2, self.b2, self.c2, self.d2, self.e2, self.f2, self.g2, self.h2, self.i2],
-            3: [self.a3, self.b3, self.c3, self.d3, self.e3, self.f3, self.g3, self.h3, self.i3],
-            4: [self.a4, self.b4, self.c4, self.d4, self.e4, self.f4, self.g4, self.h4, self.i4],
-            5: [self.a5, self.b5, self.c5, self.d5, self.e5, self.f5, self.g5, self.h5, self.i5],
-            6: [self.a6, self.b6, self.c6, self.d6, self.e6, self.f6, self.g6, self.h6, self.i6],
-            7: [self.a7, self.b7, self.c7, self.d7, self.e7, self.f7, self.g7, self.h7, self.i7],
-            8: [self.a8, self.b8, self.c8, self.d8, self.e8, self.f8, self.g8, self.h8, self.i8],
-            9: [self.a9, self.b9, self.c9, self.d9, self.e9, self.f9, self.g9, self.h9, self.i9]
-        }
-        return rows[n]
+        cell_list = []
+        
+        for key in self.__dict__:
+            if self.__dict__[key].row == n:
+                cell_list.append(self.__dict__[key])
+
+        return cell_list
 
     def get_col(self, a):
-        cols = {
-            "a": [self.a1, self.a2, self.a3, self.a4, self.a5, self.a6, self.a7, self.a8, self.a9],
-            "b": [self.b1, self.b2, self.b3, self.b4, self.b5, self.b6, self.b7, self.b8, self.b9],
-            "c": [self.c1, self.c2, self.c3, self.c4, self.c5, self.c6, self.c7, self.c8, self.c9],
-            "d": [self.d1, self.d2, self.d3, self.d4, self.d5, self.d6, self.d7, self.d8, self.d9],
-            "e": [self.e1, self.e2, self.e3, self.e4, self.e5, self.e6, self.e7, self.e8, self.e9],
-            "f": [self.f1, self.f2, self.f3, self.f4, self.f5, self.f6, self.f7, self.f8, self.f9],
-            "g": [self.g1, self.g2, self.g3, self.g4, self.g5, self.g6, self.g7, self.g8, self.g9],
-            "h": [self.h1, self.h2, self.h3, self.h4, self.h5, self.h6, self.h7, self.h8, self.h9],
-            "i": [self.i1, self.i2, self.i3, self.i4, self.i5, self.i6, self.i7, self.i8, self.i9]
-        }
-        return cols[a]
+        col_list = []
+
+        for key in self.__dict__:
+            if self.__dict__[key].col == a:
+                col_list.append(self.__dict__[key])
+
+        return col_list
         
     def get_box(self, c):
-        boxes = {
-            "b2": [self.a1, self.b1, self.c1, self.a2, self.b2, self.c2, self.a3, self.b3, self.c3],
-            "e2": [self.d1, self.e1, self.f1, self.d2, self.e2, self.f2, self.d3, self.e3, self.f3],
-            "h2": [self.g1, self.h1, self.i1, self.g2, self.h2, self.i2, self.g3, self.h3, self.i3],
-            "b5": [self.a4, self.b4, self.c4, self.a5, self.b5, self.c5, self.a6, self.b6, self.c6],
-            "e5": [self.d4, self.e4, self.f4, self.d5, self.e5, self.f5, self.d6, self.e6, self.f6],
-            "h5": [self.g4, self.h4, self.i4, self.g5, self.h5, self.i5, self.g6, self.h6, self.i6],
-            "b8": [self.a7, self.b7, self.c7, self.a8, self.b8, self.c8, self.a9, self.b9, self.c9],
-            "e8": [self.d7, self.e7, self.f7, self.d8, self.e8, self.f8, self.d9, self.e9, self.f9],
-            "h8": [self.g7, self.h7, self.i7, self.g8, self.h8, self.i8, self.g9, self.h9, self.i9]
-        }
-        return boxes[c]
+        box_list = []
+
+        for key in self.__dict__:
+            if self.__dict__[key].box == c:
+                box_list.append(self.__dict__[key])
+
+        return box_list
 
     def check_puzzle(self):
         for row in self.ROWS:
@@ -195,6 +180,8 @@ class Puzzle:
 
 def check_group(group):
     """ Return False if there are any doubles in a list. """
+
+    group = [x.value for x in group]
 
     if len(group) != 9:
         raise Exception("The group size renders it invalid.")
