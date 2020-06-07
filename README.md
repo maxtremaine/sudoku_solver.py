@@ -5,6 +5,6 @@ Solves Sudoku puzzles so I don't have to.
 - [x] Make the initializer generic.
 - [x] Make the generator take file input.
 - [x] Create a Cell class.
-- [ ] Create a freedom generation method and add to instantiation.
-- [ ] Create a sorting mechanism by freedom.
-- [ ] Create a filtering mechanism by blanks
+- [x] Create a freedom generation method and add to instantiation.
+- [x] Create a sorting mechanism by freedom.
+- [x] Create a filtering mechanism by blanks
