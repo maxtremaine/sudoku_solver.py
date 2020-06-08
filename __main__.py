@@ -1,4 +1,10 @@
-from Puzzle import Puzzle, check_group
+from lib.puzzle         import Puzzle
+from lib.cell           import Cell
+from multiprocessing    import Pool
+from typing             import List
+import datetime
+
+t0 = datetime.datetime.now()
 
 with open("input/start.sudoku") as f:
     data = f.read()
@@ -14,15 +20,22 @@ run_dict = [ x for x in run_dict if x.value == "_" ]
 run_dict.sort(key = lambda x: x.freedom)
 
 for cell in run_dict:
-    new_working_conditions = []
-
-    for working_condition in working_conditions:
+    def run_condition_checks(working_condition: Puzzle) -> List[Puzzle]:
+        output_puzzles = []
         for n in range(1, 10):
             new_condition = Puzzle.shallow_copy(working_condition)
             new_condition.__dict__[cell.code].value = n
             if new_condition.check_relative_cells(cell):
-                new_working_conditions.append(new_condition)
+                output_puzzles.append(new_condition)
+        return output_puzzles
+    
+    with Pool() as p:
+        new_working_conditions = p.map(run_condition_checks, working_conditions)
 
-    working_conditions = new_working_conditions
+    working_conditions = []
+    for group in new_working_conditions:
+        working_conditions += group
     
     print(len(working_conditions))
+
+print(datetime.datetime.now() - t0)
