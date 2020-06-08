@@ -1,8 +1,13 @@
-from src.cell import Cell
+from src.cell   import Cell
+from typing     import List
 
 class Puzzle:
-    """ Sudoku puzzle. """
+    """
+    Sudoku puzzle.
+    Parameters are all the values of cells, as named, to match a .sudoku file.
+    """
 
+    GROUPS = ["row", "col", "box"]
     ROWS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     COLS = ["a", "b", "c", "d", "e", "f", "g", "h", "i"]
     BOXES = ["b2", "e2", "h2", "b5", "e5", "h5", "b8", "e8", "h8"]
@@ -76,28 +81,38 @@ class Puzzle:
             cell.freedom = freedom
 
     @classmethod
-    def create_from_file(cls, start):
+    def create_from_file(cls, sudoku_file):
         """ Turns a .sudoku file into a Puzzle object. """
-        if len(start) != 167:
+        if len(sudoku_file) != 167:
             raise Exception ("The .sudoku file is not formatted properly.")
 
-        return cls(a1 = start[16], b1 = start[17], c1 = start[18], d1 = start[20], e1 = start[21],
-            f1 = start[22], g1 = start[24], h1 = start[25], i1 = start[26], a2 = start[30],
-            b2 = start[31], c2 = start[32], d2 = start[34], e2 = start[35], f2 = start[36],
-            g2 = start[38], h2 = start[39], i2 = start[40], a3 = start[44], b3 = start[45],
-            c3 = start[46], d3 = start[48], e3 = start[49], f3 = start[50], g3 = start[52],
-            h3 = start[53], i3 = start[54], a4 = start[72], b4 = start[73], c4 = start[74],
-            d4 = start[76], e4 = start[77], f4 = start[78], g4 = start[80], h4 = start[81],
-            i4 = start[82], a5 = start[86], b5 = start[87], c5 = start[88], d5 = start[90],
-            e5 = start[91], f5 = start[92], g5 = start[94], h5 = start[95], i5 = start[96],
-            a6 = start[100], b6 = start[101], c6 = start[102], d6 = start[104], e6 = start[105],
-            f6 = start[106], g6 = start[108], h6 = start[109], i6 = start[110], a7 = start[128],
-            b7 = start[129], c7 = start[130], d7 = start[132], e7 = start[133], f7 = start[134],
-            g7 = start[136], h7 = start[137], i7 = start[138], a8 = start[142], b8 = start[143],
-            c8 = start[144], d8 = start[146], e8 = start[147], f8 = start[148], g8 = start[150],
-            h8 = start[151], i8 = start[152], a9 = start[156], b9 = start[157], c9 = start[158],
-            d9 = start[160], e9 = start[161], f9 = start[162], g9 = start[164], h9 = start[165],
-            i9 = start[166])
+        return cls(a1 = sudoku_file[16], b1 = sudoku_file[17], c1 = sudoku_file[18],
+            d1 = sudoku_file[20], e1 = sudoku_file[21], f1 = sudoku_file[22],
+            g1 = sudoku_file[24], h1 = sudoku_file[25], i1 = sudoku_file[26],
+            a2 = sudoku_file[30], b2 = sudoku_file[31], c2 = sudoku_file[32],
+            d2 = sudoku_file[34], e2 = sudoku_file[35], f2 = sudoku_file[36],
+            g2 = sudoku_file[38], h2 = sudoku_file[39], i2 = sudoku_file[40],
+            a3 = sudoku_file[44], b3 = sudoku_file[45], c3 = sudoku_file[46],
+            d3 = sudoku_file[48], e3 = sudoku_file[49], f3 = sudoku_file[50],
+            g3 = sudoku_file[52], h3 = sudoku_file[53], i3 = sudoku_file[54],
+            a4 = sudoku_file[72], b4 = sudoku_file[73], c4 = sudoku_file[74],
+            d4 = sudoku_file[76], e4 = sudoku_file[77], f4 = sudoku_file[78],
+            g4 = sudoku_file[80], h4 = sudoku_file[81], i4 = sudoku_file[82],
+            a5 = sudoku_file[86], b5 = sudoku_file[87], c5 = sudoku_file[88],
+            d5 = sudoku_file[90], e5 = sudoku_file[91], f5 = sudoku_file[92],
+            g5 = sudoku_file[94], h5 = sudoku_file[95], i5 = sudoku_file[96],
+            a6 = sudoku_file[100], b6 = sudoku_file[101], c6 = sudoku_file[102],
+            d6 = sudoku_file[104], e6 = sudoku_file[105], f6 = sudoku_file[106],
+            g6 = sudoku_file[108], h6 = sudoku_file[109], i6 = sudoku_file[110],
+            a7 = sudoku_file[128], b7 = sudoku_file[129], c7 = sudoku_file[130],
+            d7 = sudoku_file[132], e7 = sudoku_file[133], f7 = sudoku_file[134],
+            g7 = sudoku_file[136], h7 = sudoku_file[137], i7 = sudoku_file[138],
+            a8 = sudoku_file[142], b8 = sudoku_file[143], c8 = sudoku_file[144],
+            d8 = sudoku_file[146], e8 = sudoku_file[147], f8 = sudoku_file[148],
+            g8 = sudoku_file[150], h8 = sudoku_file[151], i8 = sudoku_file[152],
+            a9 = sudoku_file[156], b9 = sudoku_file[157], c9 = sudoku_file[158],
+            d9 = sudoku_file[160], e9 = sudoku_file[161], f9 = sudoku_file[162],
+            g9 = sudoku_file[164], h9 = sudoku_file[165], i9 = sudoku_file[166])
 
     @classmethod
     def shallow_copy(cls, to_copy):
@@ -139,6 +154,12 @@ class Puzzle:
         return cell_list
 
     def to_list(self):
+        """
+        Spit out the puzzle as a list of cells.
+        
+        Returns:
+        puzzle (List[Cell]):All of the cells in the puzzle.
+        """
         return [ x for x in self.__dict__.values() ]
 
     def check_puzzle(self):
@@ -169,8 +190,16 @@ class Puzzle:
         return True
 
 
-def check_group(group):
-    """ Return False if there are any doubles in a list. """
+def check_group(group: List[Cell]) -> bool:
+    """
+    Return False if there are any doubles in a list.
+
+    Parameters:
+    group (List[Cell]):The group of cells to test.
+
+    Returns:
+    passed (bool):Did the group pass the test?
+    """
 
     group = [ x.value for x in group ]
 

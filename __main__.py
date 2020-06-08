@@ -21,6 +21,16 @@ run_dict.sort(key = lambda x: x.freedom)
 
 for cell in run_dict:
     def run_condition_checks(working_condition: Puzzle) -> List[Puzzle]:
+        """
+        Take a working condition and run possible entries through a cell.
+        Defined inside of cell iteration because cell is used in the function.
+
+        Parameters:
+        working_condition (Puzzle):The working condition to be tested.
+
+        Returns:
+        output_puzzles (List[Puzzle]): The new conditions that work.
+        """
         output_puzzles = []
         for n in range(1, 10):
             new_condition = Puzzle.shallow_copy(working_condition)
