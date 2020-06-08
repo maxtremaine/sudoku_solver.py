@@ -1,4 +1,4 @@
-from lib.cell import Cell
+from src.cell import Cell
 
 class Puzzle:
     """ Sudoku puzzle. """

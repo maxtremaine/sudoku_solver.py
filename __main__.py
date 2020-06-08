@@ -1,5 +1,5 @@
-from lib.puzzle         import Puzzle
-from lib.cell           import Cell
+from src.puzzle         import Puzzle
+from src.cell           import Cell
 from multiprocessing    import Pool
 from typing             import List
 import datetime
