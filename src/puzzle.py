@@ -201,14 +201,14 @@ def check_group(group: List[Cell]) -> bool:
     passed (bool):Did the group pass the test?
     """
 
-    group = [ x.value for x in group ]
+    group_list = [ x.value for x in group ]
 
-    if len(group) != 9:
+    if len(group_list) != 9:
         raise Exception("The group size renders it invalid.")
 
     check_scope = set()
 
-    for val in group:
+    for val in group_list:
         val = str(val)
 
         if val != "_":
