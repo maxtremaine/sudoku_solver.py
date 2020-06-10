@@ -2,7 +2,8 @@
 Solves Sudoku puzzles so I don't have to.
 
 ## To-Do
-- [ ] Parallelize working_conditions level.
+- [ ] Add a to_file method to Puzzle.
+- [x] Parallelize working_conditions level.
 - [x] Make the initializer generic.
 - [x] Make the generator take file input.
 - [x] Create a Cell class.
