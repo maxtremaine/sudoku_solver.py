@@ -11,7 +11,7 @@ class Cell:
     freedom     (int):The number of blank cells related to the cell.
     """
 
-    def __init__(self, code: str, col: str, row: int, box: str, value: str, freedom = 0):
+    def __init__(self, code: str, col: str, row: int, box: str, value: str, freedom: int = 0):
         self.code = code
         self.col = col
         self.row = row

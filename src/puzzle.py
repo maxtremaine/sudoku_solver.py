@@ -1,5 +1,5 @@
 from src.cell   import Cell
-from typing     import List
+from typing     import List, Union
 
 class Puzzle:
     """
@@ -81,7 +81,7 @@ class Puzzle:
             cell.freedom = freedom
 
     @classmethod
-    def create_from_file(cls, sudoku_file):
+    def create_from_file(cls, sudoku_file: str):
         """ Turns a .sudoku file into a Puzzle object. """
         if len(sudoku_file) != 167:
             raise Exception ("The .sudoku file is not formatted properly.")
@@ -115,7 +115,7 @@ class Puzzle:
             g9 = sudoku_file[164], h9 = sudoku_file[165], i9 = sudoku_file[166])
 
     @classmethod
-    def shallow_copy(cls, to_copy):
+    def shallow_copy(cls, to_copy: Puzzle):
         return cls(a1 = to_copy.a1.value, b1 = to_copy.b1.value, c1 = to_copy.c1.value,
             d1 = to_copy.d1.value, e1 = to_copy.e1.value, f1 = to_copy.f1.value,
             g1 = to_copy.g1.value, h1 = to_copy.h1.value, i1 = to_copy.i1.value,
@@ -144,7 +144,7 @@ class Puzzle:
             d9 = to_copy.d9.value, e9 = to_copy.e9.value, f9 = to_copy.f9.value,
             g9 = to_copy.g9.value, h9 = to_copy.h9.value, i9 = to_copy.i9.value)
     
-    def get_group(self, group_type, code):
+    def get_group(self, group_type: str, code: Union[str, int]) -> List[Cell]:
         cell_list = []
 
         for cell in self.to_list():
@@ -153,7 +153,7 @@ class Puzzle:
 
         return cell_list
 
-    def to_list(self):
+    def to_list(self) -> List[Cell]:
         """
         Spit out the puzzle as a list of cells.
         
@@ -162,7 +162,7 @@ class Puzzle:
         """
         return [ x for x in self.__dict__.values() ]
 
-    def check_puzzle(self):
+    def check_puzzle(self) -> bool:
         for row in self.ROWS:
             if check_group(self.get_group("row", row)) == False:
                 return False
@@ -177,7 +177,7 @@ class Puzzle:
 
         return True
 
-    def check_relative_cells(self, cell):
+    def check_relative_cells(self, cell: Cell) -> bool:
         if check_group(self.get_group("row", cell.row)) == False:
             return False
 
