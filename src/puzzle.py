@@ -115,7 +115,7 @@ class Puzzle:
             g9 = sudoku_file[164], h9 = sudoku_file[165], i9 = sudoku_file[166])
 
     @classmethod
-    def shallow_copy(cls, to_copy: Puzzle):
+    def shallow_copy(cls, to_copy):
         return cls(a1 = to_copy.a1.value, b1 = to_copy.b1.value, c1 = to_copy.c1.value,
             d1 = to_copy.d1.value, e1 = to_copy.e1.value, f1 = to_copy.f1.value,
             g1 = to_copy.g1.value, h1 = to_copy.h1.value, i1 = to_copy.i1.value,
