@@ -21,6 +21,11 @@ class Cell:
         self.col = code[0]
         self.row = code[1]
         self.box = get_box(code)
+        self.fileIndex = self.codes[code]
+        self.freedom = 0
+
+    def shallow_copy(self):
+        return Cell(self.code, self.value)
 
 def get_box(code: str) -> str:
     output = ["", ""]
