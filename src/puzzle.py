@@ -1,5 +1,14 @@
+# 
+#
+# Add string representations for puzzles.
+# Should just be an 81 character string.
+# Enables comparison between puzzles, like an id.
+#
+#
+
 from src.cell import Cell
 from typing import Dict, List
+from copy import copy as shallow_copy
 
 class Puzzle:
     def __init__(self, grid: Dict[str, Cell]):
@@ -23,8 +32,14 @@ class Puzzle:
 
         return cls(output)
     
-    def shallow_copy(self):
-        return Puzzle(self.grid)
+    @classmethod
+    def shallow_copy(cls, to_copy):
+        output = {}
+
+        for code in to_copy.grid:
+            output[code] = shallow_copy(to_copy.grid[code])
+        
+        return cls(output)
 
     def to_file(self) -> str:
         grid = [
