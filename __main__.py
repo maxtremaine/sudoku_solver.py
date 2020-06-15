@@ -45,6 +45,7 @@ for empty_cell_code in run_sequence:
 
     new_working_conditions = [ x2 for x1 in passed_case_lists for x2 in x1 ]
     working_conditions = new_working_conditions
+    
     print(f"|- Came up with {len(new_working_conditions)} working conditions.")
 
 with open("data/finish.sudoku", "w") as f:
