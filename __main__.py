@@ -15,6 +15,17 @@ working_conditions: List[Puzzle] = [ start_condition ]
 run_sequence: List[str] = start_condition.prioritize_blanks()
 
 def try_cases(test_case: Tuple[str, Puzzle]) -> List[Puzzle]:
+    """
+    Tries all of the possible permutations for a cell in a Puzzle, and returns valid Puzzles.
+
+    Parameters:
+    test_case (Tuple[str, Puzzle]): The test case to run.
+    test_case[0] (str): The cell to be tested in a puzzle.
+    test_case[1] (Puzzle): The puzzle in which the cell is to be tested.
+
+    Returns:
+    passed_cases (List[Puzzle]): The valid new cases when all permutations of a cell have been tested.
+    """
     passed_cases: List[Puzzle] = []
     for n in range(1, 10):
         new_condition = test_case[1].shallow_copy()
