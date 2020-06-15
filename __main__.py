@@ -24,20 +24,19 @@ def try_cases(test_case: Tuple[str, Puzzle]) -> List[Puzzle]:
             passed_cases.append(new_condition)
     return passed_cases
 
-# THIS IS WRONG. You should multithread the working condition level.
 for empty_cell_code in run_sequence:
     print(f"Running permutations on {empty_cell_code}.")
 
     working_conditions = [ (empty_cell_code, x) for x in working_conditions ]
 
     with Pool() as p:
-        new_working_conditions: List[List[Puzzle]] = p.map(try_cases, working_conditions)
+        passed_case_lists: List[List[Puzzle]] = p.map(try_cases, working_conditions)
 
-    new_working_conditions = [ x2 for x1 in new_working_conditions for x2 in x1 ]
+    new_working_conditions = [ x2 for x1 in passed_case_lists for x2 in x1 ]
     working_conditions = new_working_conditions
     print(f"|- Came up with {len(new_working_conditions)} working conditions.")
 
 with open("data/finish.sudoku", "w") as f:
-    f.write(working_conditions[0].to_file())
+    working_conditions[0].to_file(f)
 
 print(f"Ran successfully in {datetime.now() - t0}.")

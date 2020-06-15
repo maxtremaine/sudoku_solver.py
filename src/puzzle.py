@@ -23,14 +23,14 @@ class Puzzle:
         
         return cls(output)
 
-    def to_file(self) -> str:
+    def to_file(self, file: IO):
         grid = Puzzle.data["empty_grid"]
         conversion_table = Puzzle.data["file_to_string_conversion_indexes"]
 
         for n, index in enumerate(conversion_table):
             grid[index] = self.grid[n]
 
-        return ''.join(grid)
+        file.write(''.join(grid))
 
     def shallow_copy(self):
         return Puzzle(shallow_copy(self.grid))
@@ -48,11 +48,11 @@ class Puzzle:
         return output
 
     def prioritize_blanks(self) -> List[str]:
-        blank_cells: Tuple[str, int] = []
+        blank_cells: List[Tuple[str, int]] = []
 
         for n, cell in enumerate(Puzzle.data["cells"]):
             if self.grid[n] == "_":
-                blank_cells.append((Puzzle.data["cells"][cell]["code"], cell, 0))
+                blank_cells.append((Puzzle.data["cells"][cell]["code"], cell))
 
         for n, blank_cell in enumerate(blank_cells):
             related_cell_values = []
@@ -68,8 +68,9 @@ class Puzzle:
             blank_cells[n] = (blank_cell[0], freedom)
 
         blank_cells.sort(key = lambda x: x[1])
-        
-        return [ x[0] for x in blank_cells ]
+        output = [ x[0] for x in blank_cells ]
+
+        return output
         
     def check_relative_cells(self, cell_code) -> bool:
         for group_type in Puzzle.data["group_types"]:
