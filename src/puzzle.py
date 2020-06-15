@@ -75,17 +75,20 @@ class Puzzle:
         Parameters:
         group_type (str): The type of group, either "row", "col", or "box".
         search_code (str): The relevant search code to retrieve a group. Can be found in Puzzle.data.
+
+        Returns:
+        group_members (List[str]): The values of the requested group.
         """
         if group_type not in Puzzle.data["group_types"]:
             raise Exception("A valid group type was not provided")
 
         grid_indexes = [x["grid_encoding"] for x in Puzzle.data["cells"].values() if x[group_type] == search_code]
-        output = []
+        group_members = []
 
         for index in grid_indexes:
-            output.append(self.grid[index])
+            group_members.append(self.grid[index])
         
-        return output
+        return group_members
 
     def prioritize_blanks(self) -> List[str]:
         """
