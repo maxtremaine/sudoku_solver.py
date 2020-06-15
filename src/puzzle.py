@@ -3,6 +3,13 @@ from typing import List, IO, Tuple
 from copy import copy as shallow_copy
 
 class Puzzle:
+    """
+    A sudoku puzzle.
+
+    Parameters:
+    grid (List[str]): A list of 81 strings representing the puzzle, with "_" for blank cells.
+    """
+
     with open('data/puzzle_data.json') as f:
         data = json.load(f)["puzzle_data"]
     
@@ -14,6 +21,13 @@ class Puzzle:
 
     @classmethod
     def from_file(cls, file: IO):
+        """
+        Turns a .sudoku file into a Puzzle instance.
+
+        Parameters:
+        file (IO): .sudoku file. For encoding see README.md.
+        """
+
         file_string = file.read()
         conversion_table = Puzzle.data["file_to_string_conversion_indexes"]
         output = []
@@ -24,6 +38,13 @@ class Puzzle:
         return cls(output)
 
     def to_file(self, file: IO):
+        """
+        Writes a Puzzle to a file.
+
+        Parameters:
+        file (IO): The file a puzzle should be written to. Should be in "w" mode.
+        """
+
         grid = Puzzle.data["empty_grid"]
         conversion_table = Puzzle.data["file_to_string_conversion_indexes"]
 
@@ -33,9 +54,22 @@ class Puzzle:
         file.write(''.join(grid))
 
     def shallow_copy(self):
+        """
+        Provides a shallow copy, which can be altered without altering the original, of the Puzzle instance.
+        """
+
         return Puzzle(shallow_copy(self.grid))
 
     def get_group(self, group_type: str, search_code: str) -> List[str]:
+        """
+        Get a list of related cells, either a Row, Column, or Box, based on its search code.
+        Rows are indexed by a str(number), Columns are indexed by a 1-character string,
+        and Boxes are indexed by the middle of the box.
+
+        Parameters:
+        group_type (str): The type of group, either "row", "col", or "box".
+        search_code (str): The relevant search code to retrieve a group. Can be found in Puzzle.data.
+        """
         if group_type not in Puzzle.data["group_types"]:
             raise Exception("A valid group type was not provided")
 
@@ -48,6 +82,9 @@ class Puzzle:
         return output
 
     def prioritize_blanks(self) -> List[str]:
+        """
+        Provides a prioritized list of cells by freedom, represented by cell codes.
+        """
         blank_cells: List[Tuple[str, int]] = []
 
         for n, cell in enumerate(Puzzle.data["cells"]):
@@ -72,7 +109,13 @@ class Puzzle:
 
         return output
         
-    def check_relative_cells(self, cell_code) -> bool:
+    def check_relative_cells(self, cell_code: str) -> bool:
+        """
+        Checks relative groups for a cell and returns whether that cell's value is a valid entry.
+
+        Parameters:
+        cell_code (str): The cell code for a cell that should be checked for validity.
+        """
         for group_type in Puzzle.data["group_types"]:
             if not unique_entries(self.get_group(group_type, Puzzle.data["cells"][cell_code][group_type])):
                 return False
@@ -80,6 +123,9 @@ class Puzzle:
         return True
     
     def check_puzzle(self) -> bool:
+        """
+        Checks a whole puzzle for validity.
+        """
         for group_type in Puzzle.data["group_types"]:
             for group_code in Puzzle.data[group_type]:
                 if not unique_entries(self.get_group(group_type, group_code)):
@@ -87,7 +133,13 @@ class Puzzle:
 
         return True   
 
-def unique_entries(group) -> bool:
+def unique_entries(group: List[str]) -> bool:
+    """
+    Returns whether a group contains all unique entries, ignoring blanks.
+
+    Parameters:
+    group (List[str]): A list of 9 cells, represented by their values.
+    """
     if len(group) != 9:
         raise Exception(f"Group sizes should be 9, but you provided {len(group)}.")
 
