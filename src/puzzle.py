@@ -26,6 +26,9 @@ class Puzzle:
 
         Parameters:
         file (IO): .sudoku file. For encoding see README.md.
+
+        Returns:
+        puzzle (Puzzle): A new Puzzle.
         """
 
         file_string = file.read()
