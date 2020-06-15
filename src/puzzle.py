@@ -59,6 +59,9 @@ class Puzzle:
     def shallow_copy(self):
         """
         Provides a shallow copy, which can be altered without altering the original, of the Puzzle instance.
+
+        Returns:
+        new_puzzle (Puzzle): A shallow copy of this Puzzle.
         """
 
         return Puzzle(shallow_copy(self.grid))
