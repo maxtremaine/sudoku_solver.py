@@ -46,7 +46,8 @@ for empty_cell_code in run_sequence:
     new_working_conditions = [ x2 for x1 in passed_case_lists for x2 in x1 ]
     working_conditions = new_working_conditions
 
-    print(f"|- Came up with {len(new_working_conditions)} working conditions.")
+    plurality = "s" if len(new_working_conditions) > 1 else ""
+    print(f"|- Came up with { len(new_working_conditions) } working condition{ plurality }.")
 
 with open("data/finish.sudoku", "w") as f:
     working_conditions[0].to_file(f)
