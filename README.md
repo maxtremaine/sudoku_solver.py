@@ -10,3 +10,9 @@ Solves Sudoku puzzles so I don't have to.
 - [x] Create a freedom generation method and add to instantiation.
 - [x] Create a sorting mechanism by freedom.
 - [x] Create a filtering mechanism by blanks.
+
+## Check Typing and Run
+
+```bash
+python3 -m mypy . && python3 .
+```
