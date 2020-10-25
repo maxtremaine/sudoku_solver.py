@@ -28,7 +28,7 @@ def try_cases(test_case: Tuple[str, Puzzle]) -> List[Puzzle]:
     """
     passed_cases: List[Puzzle] = []
     for n in range(1, 10):
-        new_condition = test_case[1].shallow_copy()
+        new_condition = Puzzle.shallow_copy(test_case[1])
         new_condition.grid[Puzzle.data["cells"][test_case[0]]["grid_encoding"]] = str(n)
 
         if new_condition.check_relative_cells(test_case[0]):

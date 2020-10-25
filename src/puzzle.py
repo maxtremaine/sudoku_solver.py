@@ -1,6 +1,6 @@
 import json
 from typing import List, IO, Tuple
-from copy import copy as shallow_copy
+from copy import copy as shallow_copy_function
 
 class Puzzle:
     """
@@ -56,7 +56,8 @@ class Puzzle:
 
         file.write(''.join(grid))
 
-    def shallow_copy(self) -> Puzzle:
+    @classmethod
+    def shallow_copy(cls, instance):
         """
         Provides a shallow copy, which can be altered without altering the original, of the Puzzle instance.
 
@@ -64,7 +65,7 @@ class Puzzle:
         new_puzzle (Puzzle): A shallow copy of this Puzzle.
         """
 
-        return Puzzle(shallow_copy(self.grid))
+        return cls(shallow_copy_function(instance.grid))
 
     def get_group(self, group_type: str, search_code: str) -> List[str]:
         """
@@ -82,7 +83,11 @@ class Puzzle:
         if group_type not in Puzzle.data["group_types"]:
             raise Exception("A valid group type was not provided")
 
-        grid_indexes = [x["grid_encoding"] for x in Puzzle.data["cells"].values() if x[group_type] == search_code]
+        grid_indexes = [
+            x["grid_encoding"]
+            for x in Puzzle.data["cells"].values()
+            if x[group_type] == search_code
+        ]
         group_members = []
 
         for index in grid_indexes:
