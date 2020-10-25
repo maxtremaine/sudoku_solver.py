@@ -56,7 +56,7 @@ class Puzzle:
 
         file.write(''.join(grid))
 
-    def shallow_copy(self):
+    def shallow_copy(self) -> Puzzle:
         """
         Provides a shallow copy, which can be altered without altering the original, of the Puzzle instance.
 
