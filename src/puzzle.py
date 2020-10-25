@@ -15,7 +15,9 @@ class Puzzle:
     
     def __init__(self, grid: List[str]):
         if len(grid) != 81:
-            raise Exception(f"This grid is {len(grid)} characters long, where it should be 81 characters long.")
+            raise Exception(
+                f"This grid is {len(grid)} characters long, where it should be 81 characters long."
+            )
         
         self.grid = grid
 
@@ -110,7 +112,10 @@ class Puzzle:
             freedom = 0
 
             for group_type in Puzzle.data["group_types"]:
-                related_cell_values += self.get_group(group_type, Puzzle.data["cells"][blank_cell[0]][group_type])
+                related_cell_values += self.get_group(
+                    group_type,
+                    Puzzle.data["cells"][blank_cell[0]][group_type]
+                )
 
             for cell_value in related_cell_values:
                 if cell_value == "_":
@@ -131,7 +136,10 @@ class Puzzle:
         cell_code (str): The cell code for a cell that should be checked for validity.
         """
         for group_type in Puzzle.data["group_types"]:
-            if not unique_entries(self.get_group(group_type, Puzzle.data["cells"][cell_code][group_type])):
+            if not unique_entries(self.get_group(
+                group_type,
+                Puzzle.data["cells"][cell_code][group_type]
+            )):
                 return False
         
         return True
