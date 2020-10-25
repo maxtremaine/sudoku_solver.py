@@ -1,4 +1,4 @@
-import json
+import json # Puzzle data are stored in JSON.
 from typing import List, IO, Tuple
 from copy import copy as shallow_copy_function
 
@@ -39,7 +39,7 @@ class Puzzle:
 
         for index in conversion_table:
             output.append(file_string[index])
-        
+
         return cls(output)
 
     def to_file(self, file: IO):
