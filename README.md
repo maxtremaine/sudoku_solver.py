@@ -11,8 +11,16 @@ Solves Sudoku puzzles so I don't have to.
 - [x] Create a sorting mechanism by freedom.
 - [x] Create a filtering mechanism by blanks.
 
-## Check Typing and Run
+## Scripts
+
+### Test and Type Check
 
 ```sh
-python3 -m mypy . && python3 .
+python3 -m mypy . && python3 -m unittest
+```
+
+### Run
+
+```sh
+python3 .
 ```
