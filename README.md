@@ -13,6 +13,6 @@ Solves Sudoku puzzles so I don't have to.
 
 ## Check Typing and Run
 
-```bash
+```sh
 python3 -m mypy . && python3 .
 ```

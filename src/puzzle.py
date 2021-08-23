@@ -10,7 +10,7 @@ class Puzzle:
     grid (List[str]): A list of 81 strings representing the puzzle, with "_" for blank cells.
     """
 
-    with open('data/puzzle_data.json') as f:
+    with open('src/puzzle_data.json') as f:
         data = json.load(f)["puzzle_data"]
     
     def __init__(self, grid: List[str]):
