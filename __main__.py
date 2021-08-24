@@ -54,6 +54,9 @@ while not solved:
     branches = new_branches
 
 # Output
+with open('io/finish.sudoku', 'w') as f:
+    f.write(sudoku_string_to_file(branches[0]))
+
 print(sudoku_string_to_file(branches[0]))
 print(is_valid_puzzle(branches[0]))
 print(f"Ran successfully in {datetime.now() - t0}.")
