@@ -31,7 +31,7 @@ I have designed this file type to be very readable, for getting puzzles in and o
 41_________3____29_____4_6____7___9___74____2_____8__567___1_____9_2___3_3___9_5_
 ```
 
-I have designed this type to be very ordered, so that you can create groups by index (see "groups" in _src/puzzle_data.json_). This is a lightweight way to store a puzzle in working memory.
+I have designed this type to be very ordered, so that you can create groups by index (see "groups" in _src/puzzle_data.json_), and try swapping blanks for integers (see "replace_character" in _src/pure_functions.py_). This is a lightweight way to store a puzzle in working memory.
 
 See "file_to_string_conversion_indexes" in _src/puzzle_data.json_ for an easy way to switch between types.
 
