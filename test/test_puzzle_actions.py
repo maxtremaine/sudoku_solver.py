@@ -1,8 +1,8 @@
-import unittest
+from unittest import TestCase
 from src.puzzle_actions import (sudoku_file_to_string, sudoku_string_to_file, is_valid_puzzle,
     get_related_cell_indexes, get_cell_values, get_cell_index)
 
-class TestPuzzleActions(unittest.TestCase):
+class TestPuzzleActions(TestCase):
     def test_sudoku_file_to_string(self):
         file_string = '\n'.join([
             '  abc def ghi',

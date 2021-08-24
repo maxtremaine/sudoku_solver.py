@@ -1,7 +1,7 @@
-import unittest
+from unittest import TestCase
 from src.pure_assertions import is_character, is_sudoku_file, is_sudoku_string
 
-class TestPureAssertions(unittest.TestCase):
+class TestPureAssertions(TestCase):
     def test_is_character(self):
         self.assertTrue(is_character('a'))
         self.assertFalse(is_character('as'))
