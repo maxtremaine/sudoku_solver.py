@@ -15,6 +15,3 @@ def is_sudoku_string(sudoku_string: str) -> bool:
     if pattern.match(sudoku_string) == None:
         return False
     return True
-
-def is_valid_puzzle(sudoku_string: str) -> bool:
-    return True
