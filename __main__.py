@@ -32,21 +32,21 @@ while not solved:
     new_branches = []
 
     for branch in branches:
-        underscores = [
+        blank_cells = [
             BlankCell(index, branch)
             for index, value in enumerate(list(branch))
             if value == '_'
         ]
 
-        if len(underscores) == 0:
+        if len(blank_cells) == 0:
             solved = True
             new_branches = [ branch ]
             break
 
-        sorted_underscores = sorted(underscores, key = lambda x: len(x.possible_values))
+        sorted_blank_cells = sorted(blank_cells, key = lambda x: len(x.possible_values))
 
-        for possible_value in sorted_underscores[0].possible_values:
-            new_thread = replace_character(branch, sorted_underscores[0].index, possible_value)
+        for possible_value in sorted_blank_cells[0].possible_values:
+            new_thread = replace_character(branch, sorted_blank_cells[0].index, possible_value)
             new_branches.append(new_thread)
 
     print(f'- {len(new_branches)} branches on run {run_count}.')
