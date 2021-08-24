@@ -4,8 +4,10 @@ from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, sudoku_st
 from src.pure_functions import replace_character
 from src.puzzle_types import BlankCell
 
+# Timekeeping
 t0 = datetime.now()
 
+# Inputs and Assertions
 with open('io/start.sudoku', 'r') as f:
     start_puzzle = f.read()
 
@@ -20,10 +22,12 @@ if not is_sudoku_string(sudoku_string):
 if not is_valid_puzzle(sudoku_string):
     raise Exception('The input sudoku puzzle is not valid.')
 
+# State Variables
 solved = False
 run_count = 1
 branches = [ sudoku_string ]
 
+# Solution Tree
 while not solved:
     new_branches = []
 
@@ -49,6 +53,7 @@ while not solved:
     run_count += 1
     branches = new_branches
 
+# Output
 print(sudoku_string_to_file(branches[0]))
 print(is_valid_puzzle(branches[0]))
 print(f"Ran successfully in {datetime.now() - t0}.")
