@@ -1,5 +1,5 @@
 from datetime import datetime
-from src.pure_assertions import is_sudoku_file, is_sudoku_string
+from src.assertions import is_sudoku_file, is_sudoku_string
 from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, sudoku_string_to_file
 from src.pure_functions import replace_character
 from src.puzzle_types import BlankCell
