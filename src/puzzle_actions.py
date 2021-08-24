@@ -42,10 +42,8 @@ def get_related_cell_indexes(cell_index: int) -> List[int]:
     return list(index_set)
 
 def get_cell_values(sudoku_string: str, cell_indexes: List[int]) -> List[str]:
-    numeric_values = list(set([
+    return sorted(list(set([
         sudoku_string[index]
         for index in cell_indexes
         if sudoku_string[index] != '_'
-    ]))
-    numeric_values.sort()
-    return numeric_values
+    ])))
