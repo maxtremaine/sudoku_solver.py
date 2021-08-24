@@ -20,7 +20,7 @@ if not is_valid_puzzle(sudoku_string):
     raise Exception('The input sudoku puzzle is not valid.')
 
 solved = False
-blank_count = 1
+run_count = 1
 branches = [ sudoku_string ]
 
 while not solved:
@@ -42,13 +42,13 @@ while not solved:
             break
 
         sorted_underscores = sorted(underscores, key = lambda x: len(x['possible_values']))
-        
+
         for possible_value in sorted_underscores[0]['possible_values']:
             new_thread = replace_character(branch, sorted_underscores[0]['index'], possible_value)
             new_branches.append(new_thread)
 
-    print(f'- {len(new_branches)} branches on blank {blank_count}.')
-    blank_count += 1
+    print(f'- {len(new_branches)} branches on run {run_count}.')
+    run_count += 1
     branches = new_branches
 
 print(sudoku_string_to_file(branches[0]))
