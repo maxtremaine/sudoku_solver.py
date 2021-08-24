@@ -1,6 +1,6 @@
 from datetime import datetime
 from src.assertions import is_sudoku_file, is_sudoku_string
-from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, get_cell_values, get_related_cell_indexes, sudoku_string_to_file
+from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, get_cell_values, get_related_cell_indexes, sudoku_string_to_file, get_cell_index
 from src.pure_functions import get_missing_digits, replace_character
 
 t0 = datetime.now()
@@ -20,6 +20,7 @@ if not is_valid_puzzle(sudoku_string):
     raise Exception('The input sudoku puzzle is not valid.')
 
 solved = False
+blank_count = 1
 branches = [ sudoku_string ]
 
 while not solved:
@@ -41,13 +42,14 @@ while not solved:
             break
 
         sorted_underscores = sorted(underscores, key = lambda x: len(x['possible_values']))
-
+        
         for possible_value in sorted_underscores[0]['possible_values']:
             new_thread = replace_character(branch, sorted_underscores[0]['index'], possible_value)
             new_branches.append(new_thread)
 
+    print(f'- {len(new_branches)} branches on blank {blank_count}.')
+    blank_count += 1
     branches = new_branches
-    print(len(new_branches))
 
 print(sudoku_string_to_file(branches[0]))
 print(is_valid_puzzle(branches[0]))
