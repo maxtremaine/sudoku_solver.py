@@ -23,7 +23,7 @@ I haven't been able to keep up with coding as much as I would have, but I do spe
 9 _3_|__9|_5_
 ```
 
-I have designed this file type to be very readable, for getting puzzles in and out of the program.
+I have designed this file type to be very readable and intuitive, for getting puzzles in and out of the program.
 
 ### Sudoku String
 
