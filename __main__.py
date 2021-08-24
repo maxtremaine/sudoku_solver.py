@@ -15,6 +15,4 @@ sudoku_string = sudoku_file_to_string(start_puzzle)
 if not is_sudoku_string(sudoku_string):
     raise Exception('The input does not generate a valid sudoku string.')
 
-print(sudoku_string)
-
 print(f"Ran successfully in {datetime.now() - t0}.")
