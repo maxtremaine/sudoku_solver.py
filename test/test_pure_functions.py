@@ -7,5 +7,7 @@ class TestPureFunctions(TestCase):
         self.assertEqual(get_missing_digits(['a', '5', '6', '3']), ['1', '2', '4', '7', '8', '9'])
 
     def test_replace_character(self):
-        self.assertEqual(replace_character('Oh hi there.', 4, 'o'), 'Oh ho there.')
+        original_string = 'Oh hi there.'
+        self.assertEqual(replace_character(original_string, 4, 'o'), 'Oh ho there.')
+        self.assertEqual(original_string, 'Oh hi there.') # Check for shallow copy.
         self.assertEqual(replace_character('0123456789', 5, '2'), '0123426789')
