@@ -1,7 +1,8 @@
 from datetime import datetime
-from src.assertions import is_sudoku_file, is_sudoku_string
-from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, get_cell_values, get_related_cell_indexes, sudoku_string_to_file, get_cell_index
-from src.pure_functions import get_missing_digits, replace_character
+from src.pure_assertions import is_sudoku_file, is_sudoku_string
+from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, sudoku_string_to_file
+from src.pure_functions import replace_character
+from src.puzzle_types import BlankCell
 
 t0 = datetime.now()
 
@@ -28,10 +29,7 @@ while not solved:
 
     for branch in branches:
         underscores = [
-            {
-                'index': index,
-                'possible_values': get_missing_digits(get_cell_values(branch, get_related_cell_indexes(index)))
-            }
+            BlankCell(index, branch)
             for index, value in enumerate(list(branch))
             if value == '_'
         ]
@@ -41,10 +39,10 @@ while not solved:
             new_branches = [ branch ]
             break
 
-        sorted_underscores = sorted(underscores, key = lambda x: len(x['possible_values']))
+        sorted_underscores = sorted(underscores, key = lambda x: len(x.possible_values))
 
-        for possible_value in sorted_underscores[0]['possible_values']:
-            new_thread = replace_character(branch, sorted_underscores[0]['index'], possible_value)
+        for possible_value in sorted_underscores[0].possible_values:
+            new_thread = replace_character(branch, sorted_underscores[0].index, possible_value)
             new_branches.append(new_thread)
 
     print(f'- {len(new_branches)} branches on run {run_count}.')
