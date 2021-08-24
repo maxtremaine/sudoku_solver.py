@@ -57,5 +57,5 @@ while not solved:
 with open('io/finish.sudoku', 'w') as f:
     f.write(sudoku_string_to_file(branches[0]))
 
-print('\nWOOO, we did it:\n' + sudoku_string_to_file(branches[0]) + '\n')
+print(f'\nWOOO, we did it:\n{sudoku_string_to_file(branches[0])}\n')
 print(f"Ran successfully in {datetime.now() - t0}.")
