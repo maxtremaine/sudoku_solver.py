@@ -1,15 +1,39 @@
 # sudoku_solver
 Solves Sudoku puzzles so I don't have to.
 
-## To-Do
-- [ ] Add a to_file method to Puzzle.
-- [x] Parallelize working_conditions level.
-- [x] Make the initializer generic.
-- [x] Make the generator take file input.
-- [x] Create a Cell class.
-- [x] Create a freedom generation method and add to instantiation.
-- [x] Create a sorting mechanism by freedom.
-- [x] Create a filtering mechanism by blanks.
+## Reason and Philosophy
+I haven't been able to keep up with coding as much as I would have, but I do spend an unnecessary amount of time doing sudoku puzzles, so I thought, "Hey, I should combine the two." I have tried to make the program easy to interact with, and be highly efficient without becoming bloated with different systems/tactics for solving puzzles. I hope that at least the .sudoku file type and interpreter functions are useful to other people who want to play with sudoku as a platform; you can find those functions in _src/puzzle_actions.py_.
+
+## File and String Types
+
+### .sudoku File
+
+```
+  abc def ghi
+1 41_|___|___
+2 __3|___|_29
+3 ___|__4|_6_
+  -----------
+4 ___|7__|_9_
+5 __7|4__|__2
+6 ___|__8|__5
+  -----------
+7 67_|__1|___
+8 __9|_2_|__3
+9 _3_|__9|_5_
+```
+
+I have designed this file type to be very readable, for getting puzzles in and out of the program.
+
+### Sudoku String
+
+```
+41_________3____29_____4_6____7___9___74____2_____8__567___1_____9_2___3_3___9_5_
+```
+
+I have designed this type to be very ordered, so that you can create groups by index (see "groups" in src/puzzle_data.json). This is a lightweight way to store a puzzle in working memory.
+
+See "file_to_string_conversion_indexes" in src/puzzle_data.json for an easy way to switch between types.
 
 ## Scripts
 
