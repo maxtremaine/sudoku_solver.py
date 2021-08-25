@@ -1,8 +1,5 @@
 import re
 
-def is_character(string: str) -> bool:
-    return len(string) == 1
-
 def is_sudoku_file(sudoku_file: str) -> bool:
     pattern = re.compile('^(\s|\n|\||_|-|[1-9]|[a-i]){167}$')
     if pattern.match(sudoku_file) == None:

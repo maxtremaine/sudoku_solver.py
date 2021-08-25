@@ -1,10 +1,7 @@
 from unittest import TestCase
-from src.assertions import is_character, is_sudoku_file, is_sudoku_string
+from src.assertions import is_sudoku_file, is_sudoku_string
 
 class TestAssertions(TestCase):
-    def test_is_character(self):
-        self.assertTrue(is_character('a'))
-        self.assertFalse(is_character('as'))
 
     def test_is_sudoku_file(self):
         valid_file = '\n'.join([
