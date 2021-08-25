@@ -47,6 +47,3 @@ def get_cell_values(sudoku_string: str, cell_indexes: List[int]) -> List[str]:
         for index in cell_indexes
         if sudoku_string[index] != '_'
     ])))
-
-def get_cell_index(sudoku_string_index: int) -> str:
-    return puzzle_data['cell_indexes'][sudoku_string_index]
