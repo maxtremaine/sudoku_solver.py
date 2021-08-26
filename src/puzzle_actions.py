@@ -1,10 +1,16 @@
 import json
-from src.pure_functions import replace_character
-from src.puzzle_types import BlankCell
+from src.pure_functions import replace_character, get_missing_digits
 from typing import List
 
 with open('src/puzzle_data.json', 'r') as f:
     puzzle_data = json.load(f)['puzzle_data']
+
+# Types
+
+class BlankCell:
+    def __init__(self, index: int, sudoku_string: str):
+        self.index = index
+        self.possible_values: List[str] = get_missing_digits(get_cell_values(sudoku_string, get_related_cell_indexes(index)))
 
 # I/O
 
