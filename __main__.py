@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     # Solution Tree
     while not solved:
-        if tree_width > 300:
+        if tree_width > 500: # Basic experiments found 500 to be optimal for parallelization.
             with Pool() as p:
                 new_branches_deep = p.map(filter_new_branches, branches)
         else:
