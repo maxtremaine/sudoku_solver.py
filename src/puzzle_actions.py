@@ -1,5 +1,6 @@
 import json
 from src.pure_functions import replace_character
+from src.puzzle_types import BlankCell
 from typing import List
 
 with open('src/puzzle_data.json', 'r') as f:
@@ -47,3 +48,20 @@ def get_cell_values(sudoku_string: str, cell_indexes: List[int]) -> List[str]:
         for index in cell_indexes
         if sudoku_string[index] != '_'
     ])))
+
+def filter_new_branches(parent_branch: str) -> List[str]:
+    new_branches = []
+
+    blank_cells = [
+        BlankCell(index, parent_branch)
+        for index, value in enumerate(list(parent_branch))
+        if value == '_'
+    ]
+
+    sorted_blank_cells = sorted(blank_cells, key = lambda x: len(x.possible_values))
+
+    for possible_value in sorted_blank_cells[0].possible_values:
+        new_branch = replace_character(parent_branch, sorted_blank_cells[0].index, possible_value)
+        new_branches.append(new_branch)
+
+    return new_branches

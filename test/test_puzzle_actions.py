@@ -1,6 +1,6 @@
 from unittest import TestCase
 from src.puzzle_actions import (sudoku_file_to_string, sudoku_string_to_file, is_valid_puzzle,
-    get_related_cell_indexes, get_cell_values)
+    get_related_cell_indexes, get_cell_values, filter_new_branches)
 
 class TestPuzzleActions(TestCase):
     def test_sudoku_file_to_string(self):
@@ -50,3 +50,7 @@ class TestPuzzleActions(TestCase):
     def test_get_cell_values(self):
         valid_puzzle = '7___4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
         self.assertEqual(get_cell_values(valid_puzzle, [0, 2, 4]), ['4', '7'])
+
+    def test_filter_new_branches(self):
+        valid_puzzle = '7___4___1__1___2___6_2_9_8___35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'
+        self.assertEqual(filter_new_branches(valid_puzzle), ['7___4___1__1___2___6_2_9_8_8_35_49__1_______4__21_85___1_9_6_7___8___4__6___2___8'])
