@@ -12,16 +12,13 @@ if __name__ == '__main__':
     with open('io/start.sudoku', 'r') as f:
         start_puzzle = f.read()
 
-    if not is_sudoku_file(start_puzzle):
-        raise Exception('The input file is not valid.')
+    assert is_sudoku_file(start_puzzle), 'The input file is not valid.'
 
     sudoku_string = sudoku_file_to_string(start_puzzle)
 
-    if not is_sudoku_string(sudoku_string):
-        raise Exception('The input does not generate a valid sudoku string.')
+    assert is_sudoku_string(sudoku_string), 'The input does not generate a valid sudoku string.'
 
-    if not is_valid_puzzle(sudoku_string):
-        raise Exception('The input sudoku puzzle is not valid.')
+    assert is_valid_puzzle(sudoku_string), 'The input sudoku puzzle is not valid.'
 
     # State Variables
     solved = False
