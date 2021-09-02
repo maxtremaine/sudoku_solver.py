@@ -22,12 +22,11 @@ if __name__ == '__main__':
 
     # State Variables
     solved = False
-    run_count = 1
     tree_width = 1
     branches = [ sudoku_string ]
 
     # Solution Tree
-    while not solved:
+    for run_count in range(1, len([ x for x in sudoku_string if x == '_']) + 1):
         if tree_width > 500: # Basic experiments found 500 to be optimal for parallelization.
             with Pool() as p:
                 new_branches_deep = p.map(filter_new_branches, branches)
@@ -40,10 +39,6 @@ if __name__ == '__main__':
         run_count += 1
         tree_width = len(new_branches)
         branches = new_branches
-
-        leftover_blanks = [ x for x in new_branches[0] if x == '_' ]
-        if len(leftover_blanks) == 0:
-            solved = True
 
     # Output
     with open('io/finish.sudoku', 'w') as f:
