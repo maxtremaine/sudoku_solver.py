@@ -40,7 +40,7 @@ See "file_to_string_conversion_indexes" in _src/puzzle_data.json_ for an easy wa
 ### Type Check and Test
 
 ```sh
-python3 -m mypy . && python3 -m unittest
+python3 -m mypy . && python3 -m coverage run -m unittest
 ```
 
 ### Run
