@@ -21,12 +21,11 @@ if __name__ == '__main__':
     assert is_valid_puzzle(sudoku_string), 'The input sudoku puzzle is not valid.'
 
     # State Variables
-    solved = False
     tree_width = 1
     branches = [ sudoku_string ]
 
     # Solution Tree
-    for run_count in range(1, len([ x for x in sudoku_string if x == '_']) + 1):
+    for run_count in range(len([ x for x in sudoku_string if x == '_' ])):
         if tree_width > 500: # Basic experiments found 500 to be optimal for parallelization.
             with Pool() as p:
                 new_branches_deep = p.map(filter_new_branches, branches)
@@ -35,7 +34,7 @@ if __name__ == '__main__':
 
         new_branches = [ x for y in new_branches_deep for x in y]
         
-        print(f'- {len(new_branches)} branches on run {run_count}.')
+        print(f'- {len(new_branches)} branches on run {run_count + 1}.')
         run_count += 1
         tree_width = len(new_branches)
         branches = new_branches
