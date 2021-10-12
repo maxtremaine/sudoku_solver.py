@@ -27,14 +27,14 @@ if __name__ == '__main__':
     branches = [ sudoku_string ]
 
     # Solution Tree
-    for run_count in range(len([ x for x in sudoku_string if x == '_' ])):
+    for run_count in range(sudoku_string.count('_')):
         if tree_width > 500: # Basic experiments found 500 to be optimal for parallelization.
             with Pool() as p:
                 new_branches_deep = p.map(filter_new_branches, branches)
         else:
             new_branches_deep = [ filter_new_branches(branch) for branch in branches ]
 
-        new_branches = [ x for y in new_branches_deep for x in y]
+        new_branches = [ x for y in new_branches_deep for x in y ]
         
         print(f'- {len(new_branches)} branches on run {run_count + 1}.')
         run_count += 1
