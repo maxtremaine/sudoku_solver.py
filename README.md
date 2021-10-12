@@ -45,6 +45,8 @@ python3 -m mypy . && python3 -m coverage run -m unittest
 
 ### Run
 
+Before running, change io/start.sudoku to reflect the puzzle you want to solve.
+
 ```sh
 python3 .
 ```
