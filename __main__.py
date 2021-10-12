@@ -5,12 +5,14 @@ from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, sudoku_st
 from src.pure_functions import replace_character
 
 if __name__ == '__main__':
+    # Input
+    with open('io/start.sudoku', 'r') as f:
+        start_puzzle = f.read()
+    
     # Timekeeping
     t0 = datetime.now()
 
-    # Inputs and Assertions
-    with open('io/start.sudoku', 'r') as f:
-        start_puzzle = f.read()
+    # Assertion
 
     assert is_sudoku_file(start_puzzle), 'The input file is not valid.'
 
@@ -39,9 +41,9 @@ if __name__ == '__main__':
         tree_width = len(new_branches)
         branches = new_branches
 
+    print(f'\nWOOO, we did it:\n{sudoku_string_to_file(branches[0])}\n')
+    print(f"Ran successfully in {datetime.now() - t0}.")
+
     # Output
     with open('io/finish.sudoku', 'w') as f:
         f.write(sudoku_string_to_file(branches[0]))
-
-    print(f'\nWOOO, we did it:\n{sudoku_string_to_file(branches[0])}\n')
-    print(f"Ran successfully in {datetime.now() - t0}.")
