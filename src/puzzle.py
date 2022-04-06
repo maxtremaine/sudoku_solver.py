@@ -26,9 +26,9 @@ class Sudoku:
         return list(index_set)
 
     def is_valid(self) -> bool:
-        # for value in self.values:
-        #     if not 0 <= value < 10:
-        #         return False
+        for value in self.values:
+            if not 0 <= value < 10:
+                return False
         for group in groups:
             values = [ 
                 self.values[index]
