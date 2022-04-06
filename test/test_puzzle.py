@@ -43,3 +43,10 @@ class TestPuzzle(TestCase):
             0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0, 0, 2, 0, 0, 0, 8 ]
 
         self.assertEqual(Sudoku(valid_puzzle).get_cell_values([ 0, 2, 4 ]), [ 4, 7 ])
+
+    def test_get_related_cell_values(self):
+        valid_puzzle = [ 7, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0, 2, 0, 9,
+            0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 1, 0, 8, 5,
+            0, 0, 0, 1, 0, 9, 0, 6, 0, 7, 0, 0, 0, 8, 0, 0, 0, 4, 0, 0, 6, 0, 0, 0, 2, 0, 0, 0, 8 ]
+        values_related_to_zero = [ 1, 4, 6, 7 ]
+        self.assertEqual(Sudoku(valid_puzzle).get_related_cell_values(0), values_related_to_zero)

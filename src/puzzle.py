@@ -44,3 +44,8 @@ class Sudoku:
         ]
         unique_values = list(set(all_values))
         return unique_values
+
+    def get_related_cell_values(self, cell_index: int) -> List[int]:
+        related_cell_indexes = Sudoku.get_related_cell_indexes(cell_index)
+        related_cell_values = self.get_cell_values(related_cell_indexes)
+        return related_cell_values
