@@ -35,3 +35,12 @@ class Sudoku:
             if len(values) != len(set(values)):
                 return False
         return True
+
+    def get_cell_values(self, cell_indexes: List[int]) -> List[int]:
+        all_values = [
+            self.values[index]
+            for index in cell_indexes
+            if self.values[index] != 0
+        ]
+        unique_values = list(set(all_values))
+        return unique_values
