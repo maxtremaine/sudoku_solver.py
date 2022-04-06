@@ -22,6 +22,10 @@ class TestPuzzle(TestCase):
 
         self.assertEqual(Sudoku.from_sudoku_file(file_string), Sudoku(sudoku_list))
 
+    def test_get_related_cell_indexes(self):
+        related_to_zero = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 72, 9, 10, 11, 18, 19, 20, 27, 36, 45, 54, 63 ]
+        self.assertEqual(Sudoku.get_related_cell_indexes(0), related_to_zero)
+
     def test_is_valid(self):
         valid_puzzle = [ 7, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 6, 0, 2, 0, 9,
             0, 8, 0, 0, 0, 3, 5, 0, 4, 9, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 1, 0, 8, 5,

@@ -17,6 +17,14 @@ class Sudoku:
         number_list = [ character_to_number(x)  for x in character_list ]
         return cls(number_list)
 
+    @staticmethod
+    def get_related_cell_indexes(cell_index: int) -> List[int]:
+        index_set = set()
+        for group in groups:
+            if cell_index in group:
+                index_set |= set(group)
+        return list(index_set)
+
     def is_valid(self) -> bool:
         for group in groups:
             values = [ 
@@ -27,7 +35,3 @@ class Sudoku:
             if len(values) != len(set(values)):
                 return False
         return True
-
-    @staticmethod
-    def get_related_cell_indexes():
-        pass
