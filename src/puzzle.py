@@ -26,6 +26,9 @@ class Sudoku:
         return list(index_set)
 
     def is_valid(self) -> bool:
+        # for value in self.values:
+        #     if not 0 <= value < 10:
+        #         return False
         for group in groups:
             values = [ 
                 self.values[index]
@@ -49,3 +52,8 @@ class Sudoku:
         related_cell_indexes = Sudoku.get_related_cell_indexes(cell_index)
         related_cell_values = self.get_cell_values(related_cell_indexes)
         return related_cell_values
+
+    def change_value(self, index: int, new_value: int):
+        new_values = [ x for x in self.values ]
+        new_values[index] = new_value
+        return Sudoku(new_values)
