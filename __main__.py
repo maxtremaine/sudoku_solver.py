@@ -1,7 +1,7 @@
 from datetime import datetime
 from multiprocessing import Pool
 
-from src.puzzle import Sudoku
+from src import Sudoku
 
 from src.assertions import is_sudoku_file, is_sudoku_string
 from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, sudoku_string_to_file, filter_new_branches
