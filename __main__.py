@@ -1,5 +1,8 @@
 from datetime import datetime
 from multiprocessing import Pool
+
+from src.puzzle import Sudoku
+
 from src.assertions import is_sudoku_file, is_sudoku_string
 from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, sudoku_string_to_file, filter_new_branches
 from src.pure_functions import replace_character
@@ -11,6 +14,8 @@ if __name__ == '__main__':
     
     # Timekeeping
     t0 = datetime.now()
+
+    test_puzzle = Sudoku.from_sudoku_file(start_puzzle)
 
     # Assertion
 

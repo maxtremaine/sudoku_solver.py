@@ -1,3 +1,4 @@
+from re import compile as compile_regex
 from dataclasses import dataclass
 from typing import List
 from src.puzzle_data import file_to_string_conversion_indexes, groups
@@ -6,8 +7,34 @@ from src.puzzle_data import file_to_string_conversion_indexes, groups
 class Sudoku:
     values: List[int]
 
+    @staticmethod
+    def get_related_cell_indexes(cell_index: int) -> List[int]:
+        index_set = set()
+        for group in groups:
+            if cell_index in group:
+                index_set |= set(group)
+        return list(index_set)
+
+    @staticmethod
+    def is_sudoku_file(sudoku_file: str) -> bool:
+        pattern = compile_regex('^(\s|\n|\||_|-|[1-9]|[a-i]){167}$')
+        if pattern.match(sudoku_file) == None:
+            return False
+        return True
+
+    @staticmethod
+    def is_sudoku_string(sudoku_string: str) -> bool:
+        """If a string is 81 digits or underscores, return True."""
+        pattern = re.compile('^(_|[1-9]){81}$')
+        if pattern.match(sudoku_string) == None:
+            return False
+        return True
+
     @classmethod
     def from_sudoku_file(cls, file_string: str):
+        if not Sudoku.is_sudoku_file(file_string):
+            raise Exception('The file string is not valid.')
+
         def character_to_number(character):
             if character == '_':
                 return 0
@@ -16,14 +43,6 @@ class Sudoku:
         character_list = [ file_string[x] for x in file_to_string_conversion_indexes ]
         number_list = [ character_to_number(x)  for x in character_list ]
         return cls(number_list)
-
-    @staticmethod
-    def get_related_cell_indexes(cell_index: int) -> List[int]:
-        index_set = set()
-        for group in groups:
-            if cell_index in group:
-                index_set |= set(group)
-        return list(index_set)
 
     def is_valid(self) -> bool:
         for value in self.values:
