@@ -34,7 +34,7 @@ if __name__ == '__main__':
         else:
             new_branches_deep = [ filter_new_branches(branch) for branch in branches ]
 
-        new_branches = [ x for y in new_branches_deep for x in y ]
+        new_branches = [ x for sub_list in new_branches_deep for x in sub_list ]
         
         print(f'- {len(new_branches)} branches on run {run_count + 1}.')
         run_count += 1
