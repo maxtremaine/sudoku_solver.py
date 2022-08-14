@@ -15,15 +15,13 @@ if __name__ == '__main__':
     # Timekeeping
     t0 = datetime.now()
 
-    test_puzzle = Sudoku.from_sudoku_file(start_puzzle)
-
     # Assertion
 
-    assert is_sudoku_file(start_puzzle), 'The input file is not valid.'
+    assert Sudoku.is_sudoku_file(start_puzzle), 'The input file is not valid.'
 
     sudoku_string = sudoku_file_to_string(start_puzzle)
 
-    assert is_sudoku_string(sudoku_string), 'The input does not generate a valid sudoku string.'
+    assert Sudoku.is_sudoku_string(sudoku_string), 'The input does not generate a valid sudoku string.'
 
     assert is_valid_puzzle(sudoku_string), 'The input sudoku puzzle is not valid.'
 

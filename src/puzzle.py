@@ -25,7 +25,7 @@ class Sudoku:
     @staticmethod
     def is_sudoku_string(sudoku_string: str) -> bool:
         """If a string is 81 digits or underscores, return True."""
-        pattern = re.compile('^(_|[1-9]){81}$')
+        pattern = compile_regex('^(_|[1-9]){81}$')
         if pattern.match(sudoku_string) == None:
             return False
         return True
