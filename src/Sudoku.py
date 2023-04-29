@@ -33,6 +33,8 @@ class Sudoku:
 
     @classmethod
     def from_sudoku_file(cls, file_string: str):
+        """Turn a .sudoku file into a Sudoku object."""
+        
         if not Sudoku.is_sudoku_file(file_string):
             raise Exception('The file string is not valid.')
 
