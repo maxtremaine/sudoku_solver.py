@@ -1,6 +1,7 @@
-from re import compile as compile_regex
-from dataclasses import dataclass
 from typing import List
+from dataclasses import dataclass
+from re import compile as compile_regex
+
 from src.puzzle_data import file_to_string_conversion_indexes, groups
 
 @dataclass(frozen=True)
