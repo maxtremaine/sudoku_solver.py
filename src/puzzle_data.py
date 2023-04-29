@@ -1,3 +1,12 @@
+# This file contains helpful data for puzzle functions in other files.
+#
+# Contents:
+# 1. Empty Grid: An empty .sudoku file, with all values set to '_'.
+# 2. File to String Conversion Indexes: An ordered list of indexes in a .sudoku file.
+# 3. Groups: The array indexes for all of the groups of 1-9 in a Sudoku puzzle.
+#
+
+# 1. Empty Grid: An empty .sudoku file, with all values set to '_'.
 empty_grid = [
     " ",
     " ",
@@ -168,6 +177,7 @@ empty_grid = [
     "_"
 ]
 
+# 2. File to String Conversion Indexes: An ordered list of indexes in a .sudoku file.
 file_to_string_conversion_indexes = [
     16,
     17,
@@ -251,7 +261,7 @@ file_to_string_conversion_indexes = [
     165,
     166
 ]
-
+# 3. Groups: The array indexes for all of the groups of 1-9 in a Sudoku puzzle.
 groups = [
     [
         0,
