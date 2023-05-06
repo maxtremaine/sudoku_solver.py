@@ -8,6 +8,9 @@ from src.pure_functions import get_missing_digits
 @dataclass(frozen=True)
 class Sudoku:
     values: list[int]
+
+    def __eq__(self, other):
+        return self.values == other.values
     
     @classmethod
     def from_sudoku_file(cls, file_string):
@@ -94,6 +97,8 @@ class Sudoku:
         file_list = [ x for x in empty_grid ]
 
         for (puzzle_index, file_index) in enumerate(file_to_string_conversion_indexes):
-            file_list[file_index] = str(self.values[puzzle_index])
+            puzzle_value_int = self.values[puzzle_index]
+            puzzle_value_str = '_' if puzzle_value_int == 0 else str(puzzle_value_int)
+            file_list[file_index] = puzzle_value_str
 
         return ''.join(file_list)
