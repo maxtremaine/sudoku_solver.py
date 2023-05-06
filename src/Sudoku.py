@@ -1,7 +1,9 @@
 from dataclasses import dataclass
 from re import compile as compile_regex
 
-from src.puzzle_data import file_to_string_conversion_indexes, groups
+from src.BlankCell import BlankCell
+from src.puzzle_data import file_to_string_conversion_indexes, groups, empty_grid
+from src.pure_functions import get_missing_digits
 
 @dataclass(frozen=True)
 class Sudoku:
@@ -72,6 +74,26 @@ class Sudoku:
         return related_cell_values
 
     def change_value(self, index: int, new_value: int):
+        """Shallow copy with an adjusted value."""
         new_values = [ x for x in self.values ]
         new_values[index] = new_value
         return Sudoku(new_values)
+
+    def get_blank_cells(self) -> list[BlankCell]:
+        zeros = [ x for x in enumerate(self.values)
+            if x[1] == 0 ]
+        blank_cells = []
+
+        for (i, value) in zeros:
+            possible_values = get_missing_digits(self.get_related_cell_values(i))
+            blank_cells.append(BlankCell(i, possible_values))
+
+        return sorted(blank_cells, key=lambda x: len(x.possible_values))
+
+    def to_sudoku_file(self) -> str:
+        file_list = [ x for x in empty_grid ]
+
+        for (puzzle_index, file_index) in enumerate(file_to_string_conversion_indexes):
+            file_list[file_index] = str(self.values[puzzle_index])
+
+        return ''.join(file_list)
