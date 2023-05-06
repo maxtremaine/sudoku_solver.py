@@ -1,52 +1,32 @@
 from datetime import datetime
-from multiprocessing import Pool
 
 from src import Sudoku
 
-from src.assertions import is_sudoku_file, is_sudoku_string
-from src.puzzle_actions import sudoku_file_to_string, is_valid_puzzle, sudoku_string_to_file, filter_new_branches
-from src.pure_functions import replace_character
-
 if __name__ == '__main__':
-    # Input
     with open('io/start.sudoku', 'r') as f:
-        start_puzzle = f.read()
-    
-    # Timekeeping
+        start_file = f.read()
+
     t0 = datetime.now()
 
-    # Assertion
+    err, start_puzzle = Sudoku.from_sudoku_file(start_file)
 
-    assert Sudoku.is_sudoku_file(start_puzzle), 'The input file is not valid.'
-
-    sudoku_string = sudoku_file_to_string(start_puzzle)
-
-    assert Sudoku.is_sudoku_string(sudoku_string), 'The input does not generate a valid sudoku string.'
-
-    assert is_valid_puzzle(sudoku_string), 'The input sudoku puzzle is not valid.'
+    if err:
+        raise Exception(err)
 
     # State Variables
     tree_width = 1
-    branches = [ sudoku_string ]
+    branches = [ start_puzzle ]
 
     # Solution Tree
-    for run_count in range(sudoku_string.count('_')):
-        if tree_width > 500: # Basic experiments found 500 to be optimal for parallelization.
-            with Pool() as p:
-                new_branches_deep = p.map(filter_new_branches, branches)
-        else:
-            new_branches_deep = [ filter_new_branches(branch) for branch in branches ]
-
-        new_branches = [ x for sub_list in new_branches_deep for x in sub_list ]
-        
-        print(f'- {len(new_branches)} branches on run {run_count + 1}.')
-        run_count += 1
+    for run_count in range(1, start_puzzle.values.count(0) + 1):
+        new_branches = []
+        print(f'- {len(new_branches)} branches on run {run_count}.')
         tree_width = len(new_branches)
         branches = new_branches
 
-    print(f'\nWOOO, we did it:\n{sudoku_string_to_file(branches[0])}\n')
+    print(f'\nWOOO, we did it:\n\n')
     print(f"Ran successfully in {datetime.now() - t0}.")
 
     # Output
-    with open('io/finish.sudoku', 'w') as f:
-        f.write(sudoku_string_to_file(branches[0]))
+    # with open('io/finish.sudoku', 'w') as f:
+    #     f.write(sudoku_string_to_file(branches[0]))
