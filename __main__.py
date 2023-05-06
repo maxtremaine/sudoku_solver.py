@@ -15,8 +15,6 @@ if __name__ == '__main__':
 
     working_branches = [ start_puzzle ]
 
-    print(start_puzzle.get_blank_cells())
-
     # Solution Tree
     for run_count in range(1, start_puzzle.values.count(0) + 1):
         new_branches = []
