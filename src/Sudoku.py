@@ -20,7 +20,7 @@ class Sudoku:
             return 'The input file is not valid', Sudoku([])
 
         character_list = [ file_string[x] for x in file_to_string_conversion_indexes ]
-        number_list = [ int(x) if x != '_' else 0 for x in character_list ]
+        number_list = [ 0 if x == '_' else int(x) for x in character_list ]
         output_puzzle = cls(number_list)
 
         if not output_puzzle.is_valid():
