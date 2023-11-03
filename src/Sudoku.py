@@ -19,11 +19,8 @@ class Sudoku:
         if not Sudoku.is_sudoku_file(file_string):
             return 'The input file is not valid', Sudoku([])
 
-        # Unique helper function.
-        character_to_number = lambda x: 0 if x == '_' else int(x)
-
         character_list = [ file_string[x] for x in file_to_string_conversion_indexes ]
-        number_list = [ character_to_number(x)  for x in character_list ]
+        number_list = [ int(x) if x != '_' else 0 for x in character_list ]
         output_puzzle = cls(number_list)
 
         if not output_puzzle.is_valid():
