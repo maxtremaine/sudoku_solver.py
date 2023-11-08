@@ -27,7 +27,7 @@ for run_count in range(1, start_puzzle.values.count(0) + 1):
     print(f'- {len(new_branches)} branches on run {run_count}.')
     working_branches = new_branches
 
-output = working_branches[0].to_sudoku_file()
+output = str(working_branches[0])
 
 print(f'\nWOOO, we did it:\n{output}\n')
 print(f"Ran successfully in {datetime.now() - t0}.")

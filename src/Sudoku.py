@@ -11,6 +11,16 @@ class Sudoku:
 
     def __eq__(self, other):
         return self.values == other.values
+
+    def __str__(self) -> str:
+        file_list = [ x for x in empty_grid ]
+
+        for (puzzle_index, file_index) in enumerate(file_to_string_conversion_indexes):
+            puzzle_value_int = self.values[puzzle_index]
+            puzzle_value_str = '_' if puzzle_value_int == 0 else str(puzzle_value_int)
+            file_list[file_index] = puzzle_value_str
+
+        return ''.join(file_list)
     
     @classmethod
     def from_sudoku_file(cls, file_string):
@@ -87,13 +97,3 @@ class Sudoku:
             blank_cells.append(BlankCell(i, possible_values))
 
         return sorted(blank_cells, key=lambda x: len(x.possible_values))
-
-    def to_sudoku_file(self) -> str:
-        file_list = [ x for x in empty_grid ]
-
-        for (puzzle_index, file_index) in enumerate(file_to_string_conversion_indexes):
-            puzzle_value_int = self.values[puzzle_index]
-            puzzle_value_str = '_' if puzzle_value_int == 0 else str(puzzle_value_int)
-            file_list[file_index] = puzzle_value_str
-
-        return ''.join(file_list)
