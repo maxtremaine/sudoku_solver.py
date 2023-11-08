@@ -24,5 +24,5 @@ class TestSudoku(TestCase):
             "Should create a Sudoku object from a .sudoku file.")
 
     def test_to_sudoku_file(self):
-        self.assertEqual(Sudoku(self.sudoku_numbers).to_sudoku_file(), self.file_string,
+        self.assertEqual(str(Sudoku(self.sudoku_numbers)), self.file_string,
             "Should create a .sudoku file string from a puzzle.")
