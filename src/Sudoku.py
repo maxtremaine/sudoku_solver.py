@@ -7,7 +7,7 @@ from src.pure_functions import get_missing_digits
 
 @dataclass(frozen=True)
 class Sudoku:
-    values: list[int]
+    values: tuple[81, int]
 
     def __eq__(self, other):
         return self.values == other.values
@@ -85,7 +85,8 @@ class Sudoku:
         """Shallow copy with an adjusted value."""
         new_values = [ x for x in self.values ]
         new_values[index] = new_value
-        return Sudoku(new_values)
+        output = tuple(new_values)
+        return Sudoku(output)
 
     def get_blank_cells(self) -> list[BlankCell]:
         zeros = [ x for x in enumerate(self.values)
