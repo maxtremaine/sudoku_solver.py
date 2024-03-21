@@ -6,11 +6,8 @@ from src.puzzle_data import file_to_string_conversion_indexes, groups, empty_gri
 from src.pure_functions import get_missing_digits
 
 class Sudoku:
-    def __init__(self, values, check_types = True):
+    def __init__(self, *values, check_types = True):
         if check_types:
-            if type(values) is not tuple:
-                raise TypeError('Values must be a tuple, received: ', type(values))
-
             for value in values:
                 if type(value) is not int:
                     raise TypeError('Values must all be integers, received: ', type(value))
@@ -28,7 +25,7 @@ class Sudoku:
                 if len(group_values) != len(set(group_values)):
                     raise ValueError('The sudoku puzzle is not valid.')
 
-        self.values = values
+        self.values = tuple(values)
 
     def __eq__(self, other):
         return self.values == other.values
@@ -57,8 +54,8 @@ class Sudoku:
             raise ValueError('The input file is not valid.')
 
         character_list = [ file_string[x] for x in file_to_string_conversion_indexes ]
-        number_list = tuple([ 0 if x == '_' else int(x) for x in character_list ])
-        output_puzzle = cls(number_list)
+        number_list = [ 0 if x == '_' else int(x) for x in character_list ]
+        output_puzzle = cls(*number_list)
 
         return output_puzzle
 
@@ -95,8 +92,7 @@ class Sudoku:
         """Shallow copy with an adjusted value."""
         new_values = [ x for x in self ]
         new_values[index] = new_value
-        output = tuple(new_values)
-        return Sudoku(output, False)
+        return Sudoku(*new_values, check_types=False)
 
     def get_blank_cells(self) -> list[BlankCell]:
         zeros = [ x for x in enumerate(self)
