@@ -5,9 +5,21 @@ from src.BlankCell import BlankCell
 from src.puzzle_data import file_to_string_conversion_indexes, groups, empty_grid
 from src.pure_functions import get_missing_digits
 
-@dataclass(frozen=True)
 class Sudoku:
     values: tuple[81, int]
+
+    def __init__(self, values):
+        if type(values) is not tuple:
+            raise TypeError('Values must be a tuple, received: ', type(values))
+
+        for value in values:
+            if type(value) is not int:
+                raise TypeError('Values must all be integers, received: ', type(value))
+            
+            if 0 > value > 9:
+                raise ValueError('Values must be between 0 and 9 inclusive, received: ', value)
+
+        self.values = values
 
     def __eq__(self, other):
         return self.values == other.values
@@ -36,7 +48,7 @@ class Sudoku:
             raise ValueError('The input file is not valid.')
 
         character_list = [ file_string[x] for x in file_to_string_conversion_indexes ]
-        number_list = [ 0 if x == '_' else int(x) for x in character_list ]
+        number_list = tuple([ 0 if x == '_' else int(x) for x in character_list ])
         output_puzzle = cls(number_list)
 
         if not output_puzzle.is_valid():
