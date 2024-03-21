@@ -6,8 +6,6 @@ from src.puzzle_data import file_to_string_conversion_indexes, groups, empty_gri
 from src.pure_functions import get_missing_digits
 
 class Sudoku:
-    values: tuple[81, int]
-
     def __init__(self, values, check_types = True):
         if check_types:
             if type(values) is not tuple:
