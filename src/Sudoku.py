@@ -33,16 +33,16 @@ class Sudoku:
         """Turn a .sudoku file into a Sudoku object, with any errors first."""
         
         if not Sudoku.is_sudoku_file(file_string):
-            return 'The input file is not valid', Sudoku([])
+            raise ValueError('The input file is not valid.')
 
         character_list = [ file_string[x] for x in file_to_string_conversion_indexes ]
         number_list = [ 0 if x == '_' else int(x) for x in character_list ]
         output_puzzle = cls(number_list)
 
         if not output_puzzle.is_valid():
-            return 'The input sudoku puzzle is not valid', output_puzzle
+            raise ValueError('The input sudoku puzzle is not valid')
 
-        return '', output_puzzle
+        return output_puzzle
 
     @staticmethod
     def get_related_cell_indexes(cell_index: int) -> list[int]:

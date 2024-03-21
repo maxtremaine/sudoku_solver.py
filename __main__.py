@@ -7,10 +7,7 @@ with open('io/start.sudoku', 'r') as f:
 
 t0 = datetime.now()
 
-err, start_puzzle = Sudoku.from_sudoku_file(start_file)
-
-if err:
-    raise Exception(err)
+start_puzzle = Sudoku.from_sudoku_file(start_file)
 
 working_branches = [ start_puzzle ]
 
