@@ -8,16 +8,27 @@ from src.pure_functions import get_missing_digits
 class Sudoku:
     values: tuple[81, int]
 
-    def __init__(self, values):
-        if type(values) is not tuple:
-            raise TypeError('Values must be a tuple, received: ', type(values))
+    def __init__(self, values, check_types = True):
+        if check_types:
+            if type(values) is not tuple:
+                raise TypeError('Values must be a tuple, received: ', type(values))
 
-        for value in values:
-            if type(value) is not int:
-                raise TypeError('Values must all be integers, received: ', type(value))
-            
-            if 0 > value > 9:
-                raise ValueError('Values must be between 0 and 9 inclusive, received: ', value)
+            for value in values:
+                if type(value) is not int:
+                    raise TypeError('Values must all be integers, received: ', type(value))
+                
+                if 0 >= value >= 9:
+                    raise ValueError('Values must be between 0 and 9 inclusive, received: ', value)
+
+            for group in groups:
+                group_values = [ 
+                    values[index]
+                    for index in group
+                    if values[index] != 0
+                ]
+
+                if len(group_values) != len(set(group_values)):
+                    raise ValueError('The sudoku puzzle is not valid.')
 
         self.values = values
 
@@ -51,9 +62,6 @@ class Sudoku:
         number_list = tuple([ 0 if x == '_' else int(x) for x in character_list ])
         output_puzzle = cls(number_list)
 
-        if not output_puzzle.is_valid():
-            raise ValueError('The input sudoku puzzle is not valid')
-
         return output_puzzle
 
     @staticmethod
@@ -69,20 +77,6 @@ class Sudoku:
         pattern = compile_regex('^(\s|\n|\||_|-|[1-9]|[a-i]){167}$')
         if pattern.match(sudoku_file) == None:
             return False
-        return True
-
-    def is_valid(self) -> bool:
-        for value in self:
-            if not 0 <= value < 10:
-                return False
-        for group in groups:
-            values = [ 
-                self[index]
-                for index in group
-                if self[index] != 0
-            ]
-            if len(values) != len(set(values)):
-                return False
         return True
 
     def get_cell_values(self, cell_indexes: list[int]) -> list[int]:
@@ -104,7 +98,7 @@ class Sudoku:
         new_values = [ x for x in self ]
         new_values[index] = new_value
         output = tuple(new_values)
-        return Sudoku(output)
+        return Sudoku(output, False)
 
     def get_blank_cells(self) -> list[BlankCell]:
         zeros = [ x for x in enumerate(self)
