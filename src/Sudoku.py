@@ -12,11 +12,17 @@ class Sudoku:
     def __eq__(self, other):
         return self.values == other.values
 
+    def __iter__(self):
+        return iter(self.values)
+
+    def __getitem__(self, key):
+        return self.values[key]
+
     def __str__(self) -> str:
         file_list = [ x for x in empty_grid ]
 
         for (puzzle_index, file_index) in enumerate(file_to_string_conversion_indexes):
-            puzzle_value_int = self.values[puzzle_index]
+            puzzle_value_int = self[puzzle_index]
             puzzle_value_str = '_' if puzzle_value_int == 0 else str(puzzle_value_int)
             file_list[file_index] = puzzle_value_str
 
@@ -54,14 +60,14 @@ class Sudoku:
         return True
 
     def is_valid(self) -> bool:
-        for value in self.values:
+        for value in self:
             if not 0 <= value < 10:
                 return False
         for group in groups:
             values = [ 
-                self.values[index]
+                self[index]
                 for index in group
-                if self.values[index] != 0
+                if self[index] != 0
             ]
             if len(values) != len(set(values)):
                 return False
@@ -69,9 +75,9 @@ class Sudoku:
 
     def get_cell_values(self, cell_indexes: list[int]) -> list[int]:
         all_values = [
-            self.values[index]
+            self[index]
             for index in cell_indexes
-            if self.values[index] != 0
+            if self[index] != 0
         ]
         unique_values = list(set(all_values))
         return unique_values
@@ -83,13 +89,13 @@ class Sudoku:
 
     def change_value(self, index: int, new_value: int):
         """Shallow copy with an adjusted value."""
-        new_values = [ x for x in self.values ]
+        new_values = [ x for x in self ]
         new_values[index] = new_value
         output = tuple(new_values)
         return Sudoku(output)
 
     def get_blank_cells(self) -> list[BlankCell]:
-        zeros = [ x for x in enumerate(self.values)
+        zeros = [ x for x in enumerate(self)
             if x[1] == 0 ]
         blank_cells = []
 
