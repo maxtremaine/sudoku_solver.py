@@ -90,7 +90,7 @@ class Sudoku:
 
     def change_value(self, index: int, new_value: int):
         """Shallow copy with an adjusted value."""
-        new_values = [ *self[:index], new_value, *self[index + 1:]]
+        new_values = [ *self[:index], new_value, *self[index + 1:] ]
         return Sudoku(*new_values, check_types=False)
 
     def get_blank_cells(self) -> list[BlankCell]:
