@@ -35,6 +35,12 @@ class Sudoku:
 
     def __getitem__(self, key):
         return self.values[key]
+    
+    def __setitem__(self, key, value):
+        pass # Values are immutable.
+
+    def __pop__(self, i=-1):
+        return self[i] # Values are immutable.
 
     def __str__(self) -> str:
         file_list = [ x for x in empty_grid ]
